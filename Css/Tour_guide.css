@@ -1,0 +1,102 @@
+:root {
+    --primary: #0d8a7a;
+    --primary-deep: #0a6b5d;
+    --primary-soft: #dff4ef;
+    --accent: #f2b66d;
+    --accent-deep: #cf7a39;
+    --navy: #1e3f4d;
+    --slate: #5d7075;
+    --surface: #ffffff;
+    --surface-soft: #f4faf8;
+    --border: #e4ece8;
+}
+
+body > section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 24px;
+    box-sizing: border-box;
+}
+
+body > section h2 {
+    text-align: center;
+    color: var(--primary-deep);
+    font-size: 30px;
+    margin-bottom: 16px;
+}
+
+body > section p {
+    line-height: 1.7;
+}
+
+
+.guide_intro {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    padding: 20px;
+    text-align: center;
+}
+
+.guide_subtitle {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #fff0d0;
+    color: #b77a0b;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.guide_intro h2 {
+    margin: 18px 0;
+    color: #173b46;
+    font-size: 32px;
+}
+
+.guide_intro p {
+    color: #687b80;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.tourist_guide {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    margin-bottom: 70px;
+}
+
+.info_tour {
+    padding: 22px;
+    background-color: var(--surface);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(19, 69, 71, 0.08);
+    transition: transform 0.3s ease;
+    border: 1px solid var(--border);
+}
+
+.info_tour:hover {
+    transform: translateY(-5px);
+}
+
+.info_tour img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.info_tour .name {
+    color: var(--primary-deep);
+    font-size: 21px;
+    margin: 18px 0 10px;
+}
+
+.about_guide {
+    color: var(--slate);
+    font-size: 15px;
+    text-align: justify;
+    margin: 0;
+}
