@@ -14,14 +14,338 @@
             <img src="../image/Logo.png" alt="Logo Đà Nẵng Travel" class="logo-img">
             <span class="logo-text">Đà Nẵng Travel</span>
         </div>
-        <nav class=" header-menu ">
-            <a href="index.html" class="menu-item active ">Trang Chủ</a>
-            <a href="Journey.html" class="menu-item active ">Hành Trình</a>
-            <a href="Tour_guide.html" class="menu-item active ">Hướng Dẫn Viên</a>
-            <a href="Book_tour.html" class="menu-item active ">Đặt Phòng</a>
-            <a href="About_us.html" class="menu-item active ">Liên Hệ</a>
+        <nav class="header-menu">
+            <a href="index.html" class="menu-item active">Trang Chủ</a>
+            <a href="Journey.html" class="menu-item active">Hành Trình</a>
+            <a href="Tour_guide.html" class="menu-item active">Hướng Dẫn Viên</a>
+            <a href="Book_tour.html" class="menu-item active">Đặt Phòng</a>
+            <a href="About_us.html" class="menu-item active">Liên Hệ</a>
         </nav>
     </header>
+
+    <!-- Body -->
+     <section class="journey-section" id="journeys">
+        <div class="journey-heading">
+            <h2>Chọn hành trình của bạn</h2>
+            <p>
+                Mỗi chuyến đi là một câu chuyện.
+                Hãy chọn hành trình phù hợp và bắt đầu khám phá Đà Nẵng!
+            </p>
+        </div>
+
+        <div class="journey-grid">
+
+            <!-- ROUTE 1 -->
+            <article class="journey-card">
+                <div class="journey-cover cover-city">
+                    <img src="https://media.vietravel.com/images/Content/dia-diem-du-lich-da-nang-4245.jpg"
+                        alt="Cầu Vàng Đà Nẵng">
+                    <span class="journey-badge">ĐƯỢC YÊU THÍCH</span>
+                    <span class="journey-duration">3 ngày · 2 đêm</span>
+                </div>
+
+                <div class="journey-info">
+                    <span class="journey-category">🌊 BIỂN & VĂN HÓA</span>
+                    <h3>Đà Nẵng – Bà Nà – Hội An</h3>
+                    <p>Khám phá thành phố biển, check-in Cầu Vàng và dạo bước giữa phố cổ lung linh đèn lồng.</p>
+
+                    <div class="journey-meta">
+                        <span>📍 3 điểm đến chính</span>
+                        <span>🗓️ 3 ngày</span>
+                    </div>
+
+                    <button class="journey-button" type="button" aria-expanded="false"
+                            aria-controls="route-1" data-route-target="route-1">
+                        Khám phá lịch trình <span class="button-arrow">↗</span>
+                    </button>
+                </div>
+            </article>
+
+            <!-- ROUTE 2 -->
+            <article class="journey-card">
+                <div class="journey-cover cover-beach">
+                    <img src="https://booking.muongthanh.com/upload_images/images/H%60/bai-bien-my-khe-da-nang.jpg"
+                        alt="Biển Mỹ Khê">
+                    <span class="journey-duration">1 ngày</span>
+                </div>
+
+                <div class="journey-info">
+                    <span class="journey-category">☀️ BIỂN & THƯ GIÃN</span>
+                    <h3>Một ngày ở Đà Nẵng</h3>
+                    <p>Đón bình minh bên biển Mỹ Khê, thưởng thức đặc sản và khám phá thành phố khi lên đèn.</p>
+
+                    <div class="journey-meta">
+                        <span>📍 Trung tâm thành phố</span>
+                        <span>🗓️ 1 ngày</span>
+                    </div>
+
+                    <button class="journey-button" type="button" aria-expanded="false"
+                            aria-controls="route-2" data-route-target="route-2">
+                        Khám phá lịch trình <span class="button-arrow">↗</span>
+                    </button>
+                </div>
+            </article>
+
+            <!-- ROUTE 3 -->
+            <article class="journey-card">
+                <div class="journey-cover cover-heritage">
+                    <img src="https://bqn.1cdn.vn/2022/04/04/images.baoquangnam.vn-storage-newsportal-2022-4-4-125513-_b1.jpg"
+                        alt="Phố cổ Hội An">
+                    <span class="journey-duration">1 ngày</span>
+                </div>
+
+                <div class="journey-info">
+                    <span class="journey-category">🏮 DI SẢN & ẨM THỰC</span>
+                    <h3>Hẹn hò cùng phố cổ Hội An</h3>
+                    <p>Khám phá nhà cổ, thưởng thức cao lầu, chụp ảnh bên những chiếc đèn lồng đầy màu sắc.</p>
+
+                    <div class="journey-meta">
+                        <span>📍 Phố cổ Hội An</span>
+                        <span>🗓️ 1 ngày</span>
+                    </div>
+
+                    <button class="journey-button" type="button" aria-expanded="false"
+                            aria-controls="route-3" data-route-target="route-3">
+                        Khám phá lịch trình <span class="button-arrow">↗</span>
+                    </button>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- ROUTE DETAILS -->
+        <div class="route-details" id="route-1" hidden>
+            <div class="route-detail-heading">
+                <span>YOUR JOURNEY · 01</span>
+                <h3>Đà Nẵng – Bà Nà Hills – Hội An</h3>
+                <p>Hành trình 3 ngày 2 đêm khám phá những điểm đến nổi bật của miền Trung.</p>
+            </div>
+
+            <div class="route-days">
+
+                <article class="route-day">
+                    <div class="route-day-title">
+                        <span class="route-day-number">01</span>
+                        <div>
+                            <h4>Ngày 1 · Thành phố biển</h4>
+                            <p>Cầu sông Hàn · Biển Mỹ Khê · Cầu Rồng</p>
+                        </div>
+                    </div>
+
+                    <div class="route-timeline">
+                        <div class="route-stop">
+                            <time>07:30</time>
+                            <div><h5>Đón khách và ăn sáng</h5>
+                                <p>Đón khách tại sân bay hoặc khách sạn, thưởng thức đặc sản địa phương.</p></div>
+                        </div>
+                        <div class="route-stop">
+                            <time>09:00</time>
+                            <div><h5>Tham quan Cầu sông Hàn</h5>
+                                <p>Ngắm cây cầu quay nổi tiếng và cảnh quan hai bên bờ sông.</p></div>
+                        </div>
+                        <div class="route-stop">
+                            <time>10:30</time>
+                            <div><h5>Thư giãn tại biển Mỹ Khê</h5>
+                                <p>Tắm biển, đi dạo trên cát và chụp ảnh lưu niệm.</p></div>
+                        </div>
+                        <div class="route-stop">
+                            <time>12:00</time>
+                            <div><h5>Ăn trưa và nghỉ ngơi</h5>
+                                <p>Thưởng thức mì Quảng hoặc bánh tráng cuốn thịt heo.</p></div>
+                        </div>
+                        <div class="route-stop">
+                            <time>19:00</time>
+                            <div><h5>Ngắm Cầu Rồng về đêm</h5>
+                                <p>Khám phá ẩm thực đường phố và xem phun lửa, phun nước nếu đúng lịch biểu diễn.</p></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="route-day">
+                    <div class="route-day-title">
+                        <span class="route-day-number">02</span>
+                        <div>
+                            <h4>Ngày 2 · Khám phá Bà Nà Hills</h4>
+                            <p>Cáp treo · Cầu Vàng · Làng Pháp</p>
+                        </div>
+                    </div>
+
+                    <div class="route-timeline">
+                        <div class="route-stop">
+                            <time>07:00</time>
+                            <div><h5>Ăn sáng tại khách sạn</h5>
+                                <p>Chuẩn bị cho hành trình khám phá Bà Nà Hills.</p></div>
+                        </div>
+                        <div class="route-stop">
+                            <time>08:00</time>
+                            <div><h5>Di chuyển đến Bà Nà Hills</h5>
+                                <p>Ngắm cảnh núi rừng và trải nghiệm hệ thống cáp treo.</p></div>
+                        </div>
+                        <div class="route-stop">
+                            <time>09:00</time>
+                            <div><h5>Check-in Cầu Vàng</h5>
+                                <p>Chiêm ngưỡng cây cầu nổi tiếng giữa khung cảnh núi rừng.</p></div>
+                        </div>
+                        <div class="route-stop">
+                            <time>11:00</time>
+                            <div><h5>Khám phá Làng Pháp</h5>
+                                <p>Tham quan kiến trúc châu Âu, quảng trường và các điểm chụp ảnh.</p></div>
+                        </div>
+                        <div class="route-stop">
+                            <time>12:30</time>
+                            <div><h5>Ăn trưa và nghỉ ngơi</h5>
+                                <p>Thưởng thức bữa trưa tại khu du lịch.</p></div>
+                        </div>
+                        <div class="route-stop">
+                            <time>16:00</time>
+                            <div><h5>Trở về trung tâm Đà Nẵng</h5>
+                                <p>Nghỉ ngơi, mua sắm hoặc khám phá các quán cà phê địa phương.</p></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="route-day">
+                    <div class="route-day-title">
+                        <span class="route-day-number">03</span>
+                        <div>
+                            <h4>Ngày 3 · Phố cổ Hội An</h4>
+                            <p>Nhà cổ · Ẩm thực · Đèn lồng</p>
+                        </div>
+                    </div>
+
+                    <div class="route-timeline">
+                        <div class="route-stop">
+                            <time>07:30</time>
+                            <div><h5>Ăn sáng và chuẩn bị hành lý</h5>
+                                <p>Hoàn tất thủ tục tại khách sạn trước khi khởi hành.</p></div>
+                        </div>
+                        <div class="route-stop">
+                            <time>09:00</time>
+                            <div><h5>Di chuyển đến Hội An</h5>
+                                <p>Khám phá những ngôi nhà cổ và con phố mái ngói rêu phong.</p></div>
+                        </div>
+                        <div class="route-stop">
+                            <time>10:00</time>
+                            <div><h5>Tham quan các công trình cổ</h5>
+                                <p>Tìm hiểu các hội quán, nhà cổ và kiến trúc đặc trưng.</p></div>
+                        </div>
+                        <div class="route-stop">
+                            <time>12:00</time>
+                            <div><h5>Thưởng thức đặc sản Hội An</h5>
+                                <p>Thưởng thức cao lầu, cơm gà và các món ăn địa phương.</p></div>
+                        </div>
+                        <div class="route-stop">
+                            <time>14:00</time>
+                            <div><h5>Mua sắm và chụp ảnh</h5>
+                                <p>Dạo cửa hàng thủ công mỹ nghệ và chụp ảnh bên đèn lồng.</p></div>
+                        </div>
+                        <div class="route-stop">
+                            <time>16:00</time>
+                            <div><h5>Kết thúc hành trình</h5>
+                                <p>Trở về Đà Nẵng hoặc tiếp tục chuyến đi của bạn.</p></div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        
+            <div class="booking-cta">
+                <div class="booking-cta-icon" aria-hidden="true">✈</div>
+                <div class="booking-cta-text">
+                    <h4>Sẵn sàng cho chuyến đi?</h4>
+                    <p>Đặt tour ngay để chúng tôi hỗ trợ bạn chuẩn bị hành trình.</p>
+                </div>
+                <a class="booking-cta-button" href="Book_tour.html?tour=tour-da-nang-ba-na-hoi-an">
+                    <span aria-hidden="true">🧳</span> Đặt chuyến đi
+                </a>
+            </div>
+</div>
+
+        <div class="route-details" id="route-2" hidden>
+            <div class="route-detail-heading">
+                <span>YOUR JOURNEY · 02</span>
+                <h3>Một ngày khám phá Đà Nẵng</h3>
+                <p>Lịch trình gợi ý để tận hưởng biển xanh, ẩm thực và nhịp sống thành phố.</p>
+            </div>
+            <div class="route-timeline">
+                <div class="route-stop"><time>05:30</time><div><h5>Đón bình minh tại biển Mỹ Khê</h5><p>Đi dạo, ngắm biển và tận hưởng không khí trong lành.</p></div></div>
+                <div class="route-stop"><time>07:00</time><div><h5>Ăn sáng đặc sản địa phương</h5><p>Thưởng thức mì Quảng hoặc món ăn yêu thích.</p></div></div>
+                <div class="route-stop"><time>09:00</time><div><h5>Tham quan Cầu sông Hàn</h5><p>Ngắm cảnh ven sông và khám phá trung tâm thành phố.</p></div></div>
+                <div class="route-stop"><time>11:30</time><div><h5>Ăn trưa và nghỉ ngơi</h5><p>Thưởng thức món ngon địa phương.</p></div></div>
+                <div class="route-stop"><time>15:30</time><div><h5>Thư giãn bên bờ biển</h5><p>Tắm biển hoặc nghỉ ngơi tại quán cà phê ven biển.</p></div></div>
+                <div class="route-stop"><time>19:00</time><div><h5>Khám phá Đà Nẵng về đêm</h5><p>Dạo bờ sông Hàn và ghé các khu ẩm thực. Kiểm tra lịch biểu diễn Cầu Rồng trước khi đi.</p></div></div>
+            </div>
+        
+            <div class="booking-cta">
+                <div class="booking-cta-icon" aria-hidden="true">✈</div>
+                <div class="booking-cta-text">
+                    <h4>Sẵn sàng cho chuyến đi?</h4>
+                    <p>Đặt tour ngay để chúng tôi hỗ trợ bạn chuẩn bị hành trình.</p>
+                </div>
+                <a class="booking-cta-button" href="Book_tour.html?tour=tour-mot-ngay-da-nang">
+                    <span aria-hidden="true">🧳</span> Đặt chuyến đi
+                </a>
+            </div>
+</div>
+
+        <div class="route-details" id="route-3" hidden>
+            <div class="route-detail-heading">
+                <span>YOUR JOURNEY · 03</span>
+                <h3>Một ngày tại phố cổ Hội An</h3>
+                <p>Chậm rãi khám phá di sản, văn hóa và hương vị phố Hội.</p>
+            </div>
+            <div class="route-timeline">
+                <div class="route-stop"><time>08:00</time><div><h5>Khởi hành từ Đà Nẵng</h5><p>Chuẩn bị nước uống, mũ và phương tiện di chuyển.</p></div></div>
+                <div class="route-stop"><time>09:00</time><div><h5>Dạo phố cổ</h5><p>Khám phá những con đường nhỏ và các ngôi nhà cổ.</p></div></div>
+                <div class="route-stop"><time>10:30</time><div><h5>Tham quan công trình kiến trúc</h5><p>Tìm hiểu các hội quán, nhà cổ và nét văn hóa địa phương.</p></div></div>
+                <div class="route-stop"><time>12:00</time><div><h5>Thưởng thức ẩm thực</h5><p>Thử cao lầu, cơm gà Hội An hoặc món ăn đặc trưng khác.</p></div></div>
+                <div class="route-stop"><time>14:00</time><div><h5>Mua sắm và chụp ảnh</h5><p>Khám phá các cửa hàng thủ công và chọn quà lưu niệm.</p></div></div>
+                <div class="route-stop"><time>16:30</time><div><h5>Kết thúc chuyến tham quan</h5><p>Trở về Đà Nẵng hoặc ở lại khám phá phố cổ buổi tối.</p></div></div>
+            </div>
+        
+            <div class="booking-cta">
+                <div class="booking-cta-icon" aria-hidden="true">✈</div>
+                <div class="booking-cta-text">
+                    <h4>Sẵn sàng cho chuyến đi?</h4>
+                    <p>Đặt tour ngay để chúng tôi hỗ trợ bạn chuẩn bị hành trình.</p>
+                </div>
+                <a class="booking-cta-button" href="Book_tour.html?tour=tour-pho-co-hoi-an">
+                    <span aria-hidden="true">🧳</span> Đặt chuyến đi
+                </a>
+            </div>
+</div>
+
+    </section>
+
+    <!-- Bình Luận -->
+     <section class="reviews">
+        <h2>Đánh giá các tour du lịch</h2>
+        <p>Hãy chia sẻ cảm nhận của bạn về chuyến đi!</p>
+
+        <form id="reviewForm">
+            <label for="name">Họ và tên:</label>
+            <input type="text" id="name" placeholder="Nhập tên của bạn" required>
+
+            <label for="rating">Đánh giá:</label>
+            <select id="rating" required>
+                <option value="5">5 sao - Rất tốt</option>
+                <option value="4">4 sao - Tốt</option>
+                <option value="3">3 sao - Bình thường</option>
+                <option value="2">2 sao - Chưa tốt</option>
+                <option value="1">1 sao - Kém</option>
+            </select>
+
+            <label for="comment">Nội dung bình luận:</label>
+            <textarea id="comment" placeholder="Nhập bình luận..." required></textarea>
+
+            <button type="submit">Gửi đánh giá</button>
+        </form>
+
+        <h3>Đánh giá từ du khách</h3>
+        <div id="reviewList">
+            <p>Chưa có bình luận nào.</p>
+        </div>
+    </section>
 
     <!-- Footer -->
       <footer>
@@ -69,4 +393,5 @@
 
     </footer>
 </body>
+<script src="../JS/Touris.js"></script>
 </html>
