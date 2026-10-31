@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Đà Nẵng</title>
+
+    <link rel="stylesheet" href="../Css/Dangky.css">
+    <link rel="stylesheet" href="../Css/Dangnhap.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="register-container">
+        <div class="banner">
+            <div class="banner-script">Khám phá</div>
+            <h1>ĐÀ NẴNG</h1>
+            <p>Tận hưởng vẻ đẹp thành phố biển<br>
+            khám phá những điều tuyệt vời</p>
+        </div>
+
+        <div class="form-content">
+            <div class="user-icon">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <h2 class="form-title">Đăng nhập</h2>
+            <p class="form-subtitle">Tên đăng nhập sẽ được ghi nhớ trên thiết bị này</p>
+            <small class="login-notice">Bản demo: thông tin đăng nhập được lưu trên trình duyệt này.</small>
+
+            <div class="success-message" id="success" role="status" aria-live="polite">
+                Đăng nhập thành công. Đang chuyển về trang chủ...
+            </div>
+
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username"><i class="fa-solid fa-user"></i> Tên đăng nhập</label>
+                    <input type="text" id="username" placeholder="Nhập tên đăng nhập" autocomplete="username">
+                    <small class="error-message" id="usernameError"></small>
+                </div>
+
+                <div class="input-group">
+                    <label for="password"><i class="fa-solid fa-lock"></i> Mật khẩu</label>
+                    <div class="password-box">
+                        <input type="password" id="password" placeholder="Nhập mật khẩu" autocomplete="current-password">
+                        <i class="fa-regular fa-eye toggle-password"
+                           onclick="togglePassword('password', this)"></i>
+                    </div>
+                    <small class="error-message" id="passwordError"></small>
+                </div>
+
+                <small class="error-message" id="storageError"></small>
+
+                <button type="submit" class="register-btn">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Đăng nhập
+                </button>
+            </form>
+
+            <div class="footer">
+                Chưa có tài khoản?
+                <a href="Dangky.html">Đăng ký ngay</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../JS/Dangnhap.js"></script>
+</body>
+</html>
