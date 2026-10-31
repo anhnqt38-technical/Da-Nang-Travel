@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đặt chuyến đi | Đà Nẵng Travel</title>
+    <title>Đặt tour | Đà Nẵng Travel</title>
     <link rel="stylesheet" href="../Css/style.css">
     <link rel="stylesheet" href="../Css/Book_tour.css">
 </head>
+
 <body>
+    <!-- Header -->
     <header class="header">
         <div class="header-logo">
             <img src="../image/Logo.png" alt="Logo Đà Nẵng Travel" class="logo-img">
@@ -21,88 +24,71 @@
             <a href="About_us.html" class="menu-item active ">Liên Hệ</a>
         </nav>
     </header>
+    <!-- Nội dung chính -->
+    <main class="booking-main">
+        <h2>Thông tin đặt tour</h2>
 
-    <main class="booking-page">
-        <section class="booking-hero">
-            <span class="booking-eyebrow">DA NANG TRAVEL · BOOK YOUR TRIP</span>
-            <h1>Đặt chuyến đi của bạn</h1>
-            <p>Điền thông tin bên dưới, chúng tôi sẽ liên hệ để xác nhận và tư vấn chi tiết cho chuyến đi.</p>
-        </section>
-
-        <section class="booking-layout">
-            <div class="booking-intro-card">
-                <div class="booking-intro-icon">✈</div>
-                <h2>Bắt đầu hành trình mới</h2>
-                <p>Chọn tour phù hợp, cung cấp thông tin liên hệ và gửi yêu cầu đặt tour. Đội ngũ Đà Nẵng Travel sẽ sớm liên hệ với bạn.</p>
-                <ul>
-                    <li><span>✓</span> Tư vấn lịch trình phù hợp</li>
-                    <li><span>✓</span> Hỗ trợ thông tin trước chuyến đi</li>
-                    <li><span>✓</span> Xác nhận đặt tour qua điện thoại</li>
-                </ul>
-                <div class="booking-contact">
-                    <span>☎</span>
-                    <div><small>Cần hỗ trợ ngay?</small><strong>0987654321</strong></div>
-                </div>
+        <form id="bookingForm">
+            <div class="form-group">
+                <label>Chọn hành trình *</label>
+                <select id="tour">
+                    <option value="">-- Chọn hành trình --</option>
+                    <option value="Đà Nẵng – Bà Nà – Hội An (3 ngày 2 đêm)">Đà Nẵng – Bà Nà – Hội An (3 ngày 2 đêm)</option>
+                    <option value="Đà Nẵng – Sơn Trà – Ngũ Hành Sơn">Đà Nẵng – Sơn Trà – Ngũ Hành Sơn</option>
+                </select>
             </div>
 
-            <form class="booking-form" id="bookingForm">
-                <div class="booking-form-heading">
-                    <span>THÔNG TIN ĐẶT TOUR</span>
-                    <h2>Thông tin khách hàng</h2>
-                    <p>Các mục có dấu * là bắt buộc.</p>
-                </div>
+            <div class="form-group">
+                <label>Họ và tên *</label>
+                <input type="text" id="customerName" placeholder="Nhập họ và tên">
+            </div>
 
-                <div class="booking-field">
-                    <label for="tour">Chọn hành trình <b>*</b></label>
-                    <select id="tour" name="tour" required>
-                        <option value="">-- Chọn hành trình --</option>
-                        <option value="tour-da-nang-ba-na-hoi-an">Đà Nẵng – Bà Nà – Hội An (3 ngày 2 đêm)</option>
-                        <option value="tour-mot-ngay-da-nang">Một ngày ở Đà Nẵng (1 ngày)</option>
-                        <option value="tour-pho-co-hoi-an">Hẹn hò cùng phố cổ Hội An (1 ngày)</option>
-                    </select>
-                </div>
+            <div class="form-group">
+                <label>Số điện thoại *</label>
+                <input type="text" id="phone" placeholder="Ví dụ: 09xxxxxxxx">
+            </div>
 
-                <div class="booking-fields-two">
-                    <div class="booking-field">
-                        <label for="customerName">Họ và tên <b>*</b></label>
-                        <input type="text" id="customerName" name="customerName" placeholder="Nhập họ và tên" required>
-                    </div>
-                    <div class="booking-field">
-                        <label for="phone">Số điện thoại <b>*</b></label>
-                        <input type="tel" id="phone" name="phone" placeholder="Ví dụ: 09xxxxxxxx" pattern="[0-9+\\s().-]{9,15}" required>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="example@email.com">
+            </div>
 
-                <div class="booking-fields-two">
-                    <div class="booking-field">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="example@email.com">
-                    </div>
-                    <div class="booking-field">
-                        <label for="departureDate">Ngày khởi hành <b>*</b></label>
-                        <input type="date" id="departureDate" name="departureDate" required>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label>Ngày khởi hành *</label>
+                <input type="date" id="departureDate">
+            </div>
 
-                <div class="booking-field">
-                    <label for="guests">Số lượng khách <b>*</b></label>
-                    <input type="number" id="guests" name="guests" min="1" max="50" value="1" required>
-                </div>
+            <div class="form-group">
+                <label>Số lượng khách *</label>
+                <input type="number" id="guests" value="1" min="1">
+            </div>
 
-                <div class="booking-field">
-                    <label for="note">Yêu cầu thêm</label>
-                    <textarea id="note" name="note" rows="4" placeholder="Bạn có yêu cầu đặc biệt nào không?"></textarea>
-                </div>
+            <div class="form-group">
+                <label>Yêu cầu thêm</label>
+                <textarea id="note" placeholder="Bạn có yêu cầu đặc biệt nào không?"></textarea>
+            </div>
 
-                <button class="booking-submit" type="submit">
-                    Gửi yêu cầu đặt tour <span aria-hidden="true">→</span>
-                </button>
-                <p class="booking-message" id="bookingMessage" role="status" aria-live="polite"></p>
-                <p class="booking-disclaimer">* Đây là yêu cầu đặt tour thử nghiệm trên website. Hệ thống lưu thông tin trên trình duyệt, chưa thực hiện thanh toán trực tuyến.</p>
+            <button type="submit" class="btn-submit">Gửi yêu cầu đặt tour</button>
+            <p id="bookingMessage" style="margin-top: 10px; font-weight: bold;"></p>
+        </form>
+
+        <!-- Chỉ hiện thông tin và thao tác sau khi khách tra cứu bằng số điện thoại. -->
+        <div id="vung-quan-ly-don" class="management-box" aria-live="polite">
+            <h3>Kiểm tra lại đơn đặt tour</h3>
+            <p>Nhập số điện thoại đã dùng khi đặt tour để xem và quản lý yêu cầu của bạn.</p>
+            <form id="bookingLookupForm" class="booking-lookup-form">
+                <div class="form-group">
+                    <label for="lookupPhone">Số điện thoại đặt tour</label>
+                    <input type="tel" id="lookupPhone" autocomplete="tel" placeholder="Nhập số điện thoại">
+                </div>
+                <button type="submit" class="btn-submit">Kiểm tra đơn hàng</button>
+                <p id="bookingListMessage" class="booking-message" role="status"></p>
             </form>
-        </section>
+            <div id="bookingList" class="booking-list" hidden></div>
+        </div>
     </main>
 
+    <!-- Footer -->
     <footer>
         <div class="foo_container">
             <div class="img_logo">
@@ -147,7 +133,7 @@
         </div>
 
     </footer>
-
+    <script src="../JS/Book_tour.js"></script>
 </body>
-<script src="../JS/Book_tour.js"></script>
+
 </html>
