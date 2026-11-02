@@ -6,7 +6,7 @@ const storageError = document.getElementById("storageError");
 try {
     usernameInput.value = localStorage.getItem("daNangUsername") || "";
 } catch (error) {
-    storageError.textContent = "Không thể đọc tên đăng nhập đã lưu trên thiết bị này.";
+    storageError.textContent = "Không thể đọc thông tin đăng nhập đã lưu trên thiết bị này.";
 }
 
 function togglePassword(id, icon) {
@@ -25,12 +25,12 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     storageError.textContent = "";
     successMessage.style.display = "none";
 
-    const username = usernameInput.value.trim();
+    const loginIdentifier = usernameInput.value.trim();
     const password = passwordInput.value;
     let valid = true;
 
-    if (!username) {
-        document.getElementById("usernameError").textContent = "Vui lòng nhập tên đăng nhập.";
+    if (!loginIdentifier) {
+        document.getElementById("usernameError").textContent = "Vui lòng nhập tên đăng nhập hoặc số điện thoại.";
         valid = false;
     }
 
@@ -45,11 +45,12 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
 
     try {
         const savedUsername = localStorage.getItem("daNangUsername");
+        const savedPhone = localStorage.getItem("daNangPhone");
         const savedPassword = localStorage.getItem("daNangPassword");
 
-        if (!savedUsername || username !== savedUsername) {
+        if (loginIdentifier !== savedUsername && loginIdentifier !== savedPhone) {
             document.getElementById("usernameError").textContent =
-                "Tên đăng nhập không đúng hoặc tài khoản chưa được đăng ký.";
+                "Tên đăng nhập hoặc số điện thoại không đúng, hoặc tài khoản chưa được đăng ký.";
             return;
         }
 
@@ -58,6 +59,8 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
                 "Bạn đã nhập sai mật khẩu, vui lòng nhập lại.";
             return;
         }
+
+        localStorage.setItem("daNangLoggedIn", "true");
     } catch (error) {
         storageError.textContent = "Không thể kiểm tra tài khoản. Hãy bật bộ nhớ trình duyệt rồi thử lại.";
         return;
