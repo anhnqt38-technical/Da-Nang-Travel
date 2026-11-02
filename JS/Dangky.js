@@ -80,19 +80,23 @@ document.getElementById("registerForm")
     if (valid) {
         try {
             localStorage.setItem("daNangUsername", fullname);
+            localStorage.setItem("daNangPhone", phone);
             localStorage.setItem("daNangPassword", password);
+            localStorage.removeItem("daNangLoggedIn");
         } catch (error) {
             showError("storageError", "Không thể lưu tài khoản trên trình duyệt này.");
             return;
         }
 
         document.getElementById("success").style.display = "block";
+        document.getElementById("success").textContent =
+            "Đăng ký thành công. Đang chuyển đến trang đăng nhập...";
 
         this.reset();
 
         window.setTimeout(() => {
-            window.location.href = "index.html";
-        }, 2000);
+            window.location.href = "Dangnhap.html";
+        }, 1200);
     }
 });
 

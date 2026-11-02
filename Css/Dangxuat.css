@@ -1,0 +1,121 @@
+:root {
+    font-family: "Be Vietnam Pro", Arial, sans-serif;
+    color: #173b46;
+    background: #f2f7f6;
+    font-synthesis: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    min-height: 100vh;
+    margin: 0;
+    padding: 24px;
+    place-items: center;
+    background:
+        radial-gradient(circle at top left, rgba(35, 142, 141, 0.13), transparent 38%),
+        #f2f7f6;
+}
+
+.logout-card {
+    width: min(100%, 440px);
+    padding: 44px 36px;
+    border: 1px solid #e1ecea;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 20px 60px rgba(29, 63, 79, 0.12);
+    text-align: center;
+}
+
+.logout-icon {
+    display: grid;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    place-items: center;
+    border-radius: 50%;
+    background: #e7f4f2;
+    color: #238e8d;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.eyebrow {
+    margin: 0 0 10px;
+    color: #238e8d;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+}
+
+h1 {
+    margin: 0;
+    color: #1d3f4f;
+    font-size: clamp(24px, 6vw, 30px);
+}
+
+.logout-description {
+    margin: 14px 0 28px;
+    color: #62777d;
+    line-height: 1.7;
+}
+
+.logout-message {
+    min-height: 24px;
+    margin: 0 0 12px;
+    color: #a52c2c;
+    font-size: 14px;
+}
+
+.logout-actions {
+    display: grid;
+    gap: 12px;
+}
+
+.button {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 18px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.button-primary {
+    background: #238e8d;
+    color: #fff;
+}
+
+.button-primary:hover {
+    background: #1d7474;
+}
+
+.button-secondary {
+    border-color: #d7e3e1;
+    background: #fff;
+    color: #355d6a;
+}
+
+.button-secondary:hover {
+    background: #f4f8f7;
+}
+
+.button:focus-visible {
+    outline: 3px solid rgba(35, 142, 141, 0.35);
+    outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+    .logout-card {
+        padding: 36px 24px;
+    }
+}
