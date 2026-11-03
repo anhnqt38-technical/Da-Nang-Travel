@@ -1,4 +1,3 @@
-
 const places = [
     {
         id: 1,
@@ -49,7 +48,6 @@ function hienThiAnh() {
         </div>
     `).join("");
 
-    // Nhân đôi ảnh đầu tiên để vòng lặp mượt
     const firstSlide = slides.firstElementChild.cloneNode(true);
     firstSlide.id = "slide-clone";
     slides.appendChild(firstSlide);
@@ -62,7 +60,6 @@ function chuyenAnh() {
     slides.style.transition = "transform 0.8s ease-in-out";
     slides.style.transform = `translateX(-${index * 100}%)`;
 
-    // Nếu tới ảnh đầu tiên được nhân đôi
     if (index === places.length) {
         setTimeout(() => {
             slides.style.transition = "none";
@@ -84,9 +81,6 @@ if (slides) {
     setInterval(chuyenAnh, 3800);
 }
 
-
-
-// 8 ảnh 
 const diadiemhot = [
     {
         id: "dinh-ban-co",
@@ -177,7 +171,6 @@ const toggleButton = document.getElementById("toggleButton");
 
 if (placeGrid && toggleButton) {
 
-    // Duyệt mảng và tạo 8 thẻ địa điểm
     for (let i = 0; i < diadiemhot.length; i++) {
 
         const dd = diadiemhot[i];
@@ -189,7 +182,6 @@ if (placeGrid && toggleButton) {
         the.className = "place-card";
         the.style.cursor = "pointer";
 
-        // Ẩn 4 thẻ cuối khi mới mở trang
         if (i >= 4) {
             the.classList.add("hidden");
         }
@@ -282,7 +274,6 @@ if (placeGrid && toggleButton) {
 
         const cacThe = placeGrid.querySelectorAll(".place-card");
 
-        // Kiểm tra hiện tại có thẻ nào đang bị ẩn không
         const dangThuGon = placeGrid.querySelector(
             ".place-card.hidden"
         ) !== null;
@@ -290,10 +281,8 @@ if (placeGrid && toggleButton) {
         for (let i = 0; i < cacThe.length; i++) {
 
             if (dangThuGon) {
-                // Hiện tất cả thẻ
                 cacThe[i].classList.remove("hidden");
             } else if (i >= 4) {
-                // Ẩn 4 thẻ cuối
                 cacThe[i].classList.add("hidden");
             }
         }
@@ -303,8 +292,6 @@ if (placeGrid && toggleButton) {
             : "Xem thêm";
     });
 }
-
-// nội dung trang chi tiết
 
 const detailList = document.getElementById("detailList");
 
@@ -367,9 +354,6 @@ if (detailList) {
     }
 }
 
-// điểm hot 
-
-
 const moihot = [
     {
         id: 1,
@@ -403,8 +387,6 @@ const moihot = [
     }
 ];
 
-
-/* 2. Lấy các phần tử HTML */
 const danhSachDiaDiem =
     document.getElementById("danhSachDiaDiem");
 
@@ -420,14 +402,10 @@ const tenAnhPhongTo =
 const nutDong =
     document.getElementById("nutDong");
 
-
-/* 3. Hiển thị danh sách địa điểm */
 function hienThiDiaDiem() {
-    // Tránh tạo thẻ trùng lặp nếu hàm bị gọi lại
     if (danhSachDiaDiem.dataset.daRender === "true") {
         return;
     }
-
     danhSachDiaDiem.dataset.daRender = "true";
 
     let html = "";
@@ -456,20 +434,15 @@ function hienThiDiaDiem() {
     danhSachDiaDiem.innerHTML = html;
 }
 
-
-/* 4. Tìm địa điểm theo ID */
 function timDiaDiem(id) {
     return moihot.find(function (diaDiem) {
         return diaDiem.id === Number(id);
     });
 }
 
-
-/* 5. Mở ảnh phóng to theo ID */
 function moAnh(id) {
     const diaDiem = timDiaDiem(id);
 
-    // Không tìm thấy ID thì không làm gì
     if (!diaDiem) {
         return;
     }
@@ -481,25 +454,18 @@ function moAnh(id) {
     hopPhongTo.classList.add("hien");
     hopPhongTo.setAttribute("aria-hidden", "false");
 
-    // Khóa cuộn trang khi xem ảnh
     document.body.style.overflow = "hidden";
 }
 
-
-/* 6. Đóng ảnh phóng to */
 function dongAnh() {
     hopPhongTo.classList.remove("hien");
     hopPhongTo.setAttribute("aria-hidden", "true");
 
     document.body.style.overflow = "";
 
-    // Xóa ảnh cũ sau khi đóng
     anhPhongTo.removeAttribute("src");
 }
 
-
-/* 7. Bắt sự kiện bấm ảnh bằng event delegation
-   Chỉ đăng ký sự kiện một lần */
 if (danhSachDiaDiem) {
     danhSachDiaDiem.addEventListener("click", function (event) {
         const theDiaDiem = event.target.closest(".dia-diem");
@@ -512,8 +478,6 @@ if (danhSachDiaDiem) {
     });
 }
 
-
-/* Hỗ trợ mở ảnh bằng phím Enter hoặc Space */
 if (danhSachDiaDiem) {
     danhSachDiaDiem.addEventListener("keydown", function (event) {
         if (event.key !== "Enter" && event.key !== " ") {
@@ -531,14 +495,10 @@ if (danhSachDiaDiem) {
     });
 }
 
-
-/* Bấm nút X để đóng */
 if (nutDong) {
     nutDong.addEventListener("click", dongAnh);
 }
 
-
-/* Bấm vào vùng tối bên ngoài ảnh để đóng */
 if (hopPhongTo) {
     hopPhongTo.addEventListener("click", function (event) {
         if (event.target === hopPhongTo) {
@@ -547,8 +507,6 @@ if (hopPhongTo) {
     });
 }
 
-
-/* Bấm Escape để đóng */
 document.addEventListener("keydown", function (event) {
     if (hopPhongTo &&
         event.key === "Escape" &&
@@ -557,8 +515,6 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
-
-/* 8. Render danh sách đúng một lần */
 if (danhSachDiaDiem) {
     hienThiDiaDiem();
 }
