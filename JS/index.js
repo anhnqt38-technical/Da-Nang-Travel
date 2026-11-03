@@ -2,7 +2,7 @@ const places = [
     {
         id: 1,
         name: "Khám phá Đà Nẵng",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiVQjH65Kbcl9mBD9W5xmlEDm9SEK2-mccDn59X3NLZQ&s=10",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJLBoh4e3LLz9Eu6ztPBn1TwJ0k-NM8mNi2eXQlRrZzw&s=10",
         description: "Thành phố biển xinh đẹp với những cây cầu nổi tiếng."
     },
     {
