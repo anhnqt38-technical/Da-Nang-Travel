@@ -217,62 +217,6 @@ position: relative;
     box-shadow: 0 6px 16px rgba(12,158,180,.3);
 }
 
-/* DIVIDER */
-.divider {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 20px 0 15px;
-    color: #91aab4;
-    font-size: 12px;
-}
-
-.divider::before,
-.divider::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: #e2eaed;
-}
-
-/* SOCIAL */
-.social-login {
-    display: flex;
-    gap: 12px;
-}
-
-.social-btn {
-    flex: 1;
-    height: 39px;
-    border: 1px solid #dce8ed;
-    border-radius: 7px;
-    background: white;
-    font-family: inherit;
-    font-size: 12px;
-    color: #68818d;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    transition: .2s;
-}
-
-.social-btn:hover {
-    background: #f3fbfd;
-    border-color: #16a4bc;
-}
-
-.google {
-    color: #ea4335;
-    font-size: 15px;
-}
-
-.facebook {
-    color: #1877f2;
-    font-size: 15px;
-}
-
 /* FOOTER */
 .footer {
     margin-top: 27px;
