@@ -26,15 +26,24 @@
             <a href="Dangxuat.html" class="menu-item" id="logoutLink" hidden>Đăng xuất</a>
         </nav>
     </header>
-       <section class="slider">
+      <!-- ảnh đầu lướt -->
+   <section class="slider">
         <div class="slides" id="slides"></div>
     </section>
+
     <script src="script.js"></script>
 
-    <!--  8 đia diem -->
+
+
+
+    <!--  phan hot 8 đia diem -->
+
     <main class="container">
         <section class="places" aria-labelledby="places-title">
+
             <h2 id="places-title">Các điểm du lịch nổi tiếng</h2>
+
+            <!-- JavaScript tạo 8 thẻ tại đây -->
             <div class="place-grid" id="placeGrid"></div>
 
             <div class="button-container">
@@ -42,23 +51,48 @@
                     Xem thêm
                 </button> 
             </div>
+
         </section>
     </main>
- <!-- địa điểm hot phần cuối   -->
+
+
+    <!-- địa điểm hot phần cuối   -->
      <main class="container">
         <h1 class="tieu-de">
             Những Địa Điểm <span>Đang Hot</span>
         </h1>
+
+        <!-- JS đổ các thẻ địa điểm vào đây -->
         <div class="danh-sach" id="danhSachDiaDiem"></div>
     </main>
 
+    <!-- Hộp phóng to ảnh -->
     <div class="hop-phong-to" id="hopPhongTo"
          aria-hidden="true">
+
         <button class="nut-dong" id="nutDong"
                 aria-label="Đóng ảnh">&times;</button>
+
         <img id="anhPhongTo" src="" alt="">
+
         <p id="tenAnhPhongTo"></p>
     </div>
+
+    <div class="place-detail-modal" id="placeDetailModal"
+         aria-hidden="true">
+        <button class="place-detail-close" id="placeDetailClose"
+                aria-label="Đóng thông tin">&times;</button>
+        <div class="place-detail-content">
+            <img id="placeDetailImage" src="" alt="">
+            <div class="place-detail-info">
+                <h2 id="placeDetailTitle"></h2>
+                <p id="placeDetailDescription"></p>
+                <p id="placeDetailLocation"></p>
+                <div id="placeDetailExtra"></div>
+            </div>
+        </div>
+    </div>
+
     </footer>
 
     <footer>
