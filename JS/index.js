@@ -1,198 +1,423 @@
 
-        const placeDetails = {
-            "dinh-ban-co": {
-                title: "Đỉnh Bàn Cờ",
-                description: "Đỉnh Bàn Cờ nằm trên bán đảo Sơn Trà, là điểm ngắm nhìn toàn cảnh thành phố Đà Nẵng từ trên cao. Không gian núi rừng và tầm nhìn hướng ra biển khiến nơi đây phù hợp với những ai yêu thiên nhiên và thích chụp ảnh.",
-                highlights: [
-                    "Ngắm toàn cảnh thành phố, biển và vịnh Đà Nẵng.",
-                    "Check-in với tượng Đế Thích đánh cờ.",
-                    "Kết hợp tham quan bán đảo Sơn Trà trong cùng chuyến đi."
-                ],
-                tip: "Nên đi vào buổi sáng khi thời tiết thuận lợi. Đường lên núi có nhiều đoạn dốc và cua; hãy kiểm tra điều kiện đường đi, sử dụng phương tiện phù hợp và chạy xe cẩn thận."
-            },
-            "cau-rong": {
-                title: "Cầu Rồng",
-                description: "Cầu Rồng là công trình nổi bật bắc qua sông Hàn, có thiết kế hình rồng và là một trong những biểu tượng hiện đại của Đà Nẵng. Khu vực quanh cầu thích hợp để đi dạo, ngắm cảnh và chụp ảnh về đêm.",
-                highlights: [
-                    "Ngắm kiến trúc hình rồng bắc qua sông Hàn.",
-                    "Dạo bộ và chụp ảnh ở khu vực ven sông.",
-                    "Có thể kết hợp tham quan trung tâm thành phố."
-                ],
-                tip: "Nếu muốn xem chương trình phun lửa, phun nước, hãy kiểm tra lịch hoạt động chính thức trước ngày đi vì lịch có thể thay đổi."
-            },
-            "ba-na-hills": {
-                title: "Bà Nà Hills",
-                description: "Bà Nà Hills là khu du lịch trên núi với khí hậu mát mẻ, cảnh quan thiên nhiên và nhiều công trình tham quan. Cầu Vàng là một trong những điểm check-in nổi bật tại đây.",
-                highlights: [
-                    "Tham quan Cầu Vàng và các khu vực kiến trúc.",
-                    "Ngắm cảnh núi rừng từ hệ thống cáp treo.",
-                    "Dành thời gian khám phá các khu vui chơi và vườn cảnh."
-                ],
-                tip: "Nên dành phần lớn một ngày để tham quan. Kiểm tra giá vé, giờ hoạt động và dự báo thời tiết trước khi khởi hành."
-            },
-            "cau-song-han": {
-                title: "Cầu Sông Hàn",
-                description: "Cầu Sông Hàn nối hai bờ sông Hàn và là một dấu ấn gắn với sự phát triển của Đà Nẵng. Dọc bờ sông có nhiều vị trí để ngắm cầu và tận hưởng không khí thành phố.",
-                highlights: [
-                    "Ngắm cảnh sông Hàn và các cây cầu lân cận.",
-                    "Đi dạo ven sông, đặc biệt vào buổi tối.",
-                    "Chụp ảnh cảnh thành phố lên đèn."
-                ],
-                tip: "Nếu muốn xem cầu quay, hãy tra cứu lịch quay được công bố tại địa phương trước khi đến."
-            },
-            "non-nuoc": {
-                title: "Danh thắng Ngũ Hành Sơn – Non Nước",
-                description: "Khu vực Ngũ Hành Sơn nổi bật với núi đá vôi, hang động, chùa chiền và làng đá mỹ nghệ Non Nước. Đây là lựa chọn phù hợp cho chuyến tham quan kết hợp thiên nhiên, văn hóa và thủ công truyền thống.",
-                highlights: [
-                    "Khám phá cảnh quan núi đá và các hang động mở cửa tham quan.",
-                    "Tham quan những công trình tâm linh trong khu danh thắng.",
-                    "Tìm hiểu các sản phẩm tại làng đá mỹ nghệ Non Nước."
-                ],
-                tip: "Nên mang giày dễ đi, chuẩn bị nước uống và chú ý bậc thang, nền đá có thể trơn khi ẩm."
-            },
-            "bien-my-khe": {
-                title: "Biển Mỹ Khê",
-                description: "Biển Mỹ Khê nổi tiếng với bãi cát dài và không gian rộng hướng ra biển. Du khách có thể tắm biển khi điều kiện an toàn cho phép, đi dạo hoặc ngắm bình minh.",
-                highlights: [
-                    "Ngắm bình minh và đi bộ trên bãi cát.",
-                    "Thư giãn, chụp ảnh và trải nghiệm các hoạt động biển phù hợp.",
-                    "Dễ kết hợp với các điểm ăn uống và tham quan ven biển."
-                ],
-                tip: "Tuân thủ biển báo và hướng dẫn của lực lượng cứu hộ; không bơi khi biển động hoặc tại khu vực không được phép."
-            },
-            "ban-dao-son-tra": {
-                title: "Bán đảo Sơn Trà",
-                description: "Bán đảo Sơn Trà có rừng xanh, đường ven biển và nhiều điểm ngắm cảnh. Đây là nơi phù hợp để khám phá thiên nhiên và có thể kết hợp với chuyến thăm chùa Linh Ứng.",
-                highlights: [
-                    "Ngắm biển và cảnh quan núi rừng.",
-                    "Kết hợp tham quan chùa Linh Ứng.",
-                    "Quan sát thiên nhiên và giữ gìn môi trường sinh thái."
-                ],
-                tip: "Đi theo tuyến đường được phép, kiểm tra quy định tham quan hiện hành và không cho động vật hoang dã ăn."
-            },
-            "pho-co-hoi-an": {
-                title: "Phố cổ Hội An",
-                description: "Phố cổ Hội An thuộc tỉnh Quảng Nam, nổi bật với những con phố nhỏ, nhà cổ, hội quán và không gian văn hóa ven sông Hoài. Đây là điểm đến phù hợp cho chuyến đi trong ngày từ Đà Nẵng.",
-                highlights: [
-                    "Tản bộ qua những con phố và công trình kiến trúc cổ.",
-                    "Khám phá ẩm thực và các sản phẩm thủ công địa phương.",
-                    "Ngắm đèn lồng và không gian ven sông vào buổi tối."
-                ],
-                tip: "Nên mang giày thoải mái và kiểm tra thông tin vé tham quan, thời tiết cũng như phương tiện di chuyển trước khi đi."
-            }
-        };
+const places = [
+    {
+        id: 1,
+        name: "Khám phá Đà Nẵng",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkLOOQqnfxyQZvOnLRgNaeExA2ZukSCnkuYW2ZHXPpZ9777QQISnr0yo7Z&s=10",
+        description: "Thành phố biển xinh đẹp với những cây cầu nổi tiếng."
+    },
+    {
+        id: 2,
+        name: "Bà Nà Hills",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8qCuOUCK3ZAL0aOnXz-aClK1Br94cgZFzjIovGEHbUy0jkkrrfrX7ebuK&s=10",
+        description: "Khám phá Cầu Vàng và khung cảnh núi non tuyệt đẹp."
+    },
+    {
+        id: 3,
+        name: "Cầu Rồng",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCFcJZfM6Fb5iPTVYnAvN6G_XOIz4moc_UyGx-xj85R3zhHQUUZvUotM8&s=10",
+        description: "Biểu tượng nổi bật của Đà Nẵng, lung linh về đêm."
+    },
+    {
+        id: 4,
+        name: "Biển Mỹ Khê",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSOUwkkP0meTTificWP-U-4MmCsi0z2qk6PWwteOISFwcPicPWglu1X0s&s=10",
+        description: "Bãi biển nổi tiếng với làn nước trong xanh."
+    },
+    {
+        id: 5,
+        name: "Ngũ Hành Sơn",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwhPPascq6s35Cw5DtYiHkX7c5Uu5JUKPqTQrDUhb8eno29vWR1_-sZKA&s=10",
+        description: "Địa điểm du lịch với núi đá và hang động độc đáo."
+    }
+];
+const slides = document.getElementById("slides");
 
-        const placeModal = document.getElementById("placeModal");
-        const modalImage = document.getElementById("modalImage");
-        const modalTitle = document.getElementById("modalTitle");
-        const modalDescription = document.getElementById("modalDescription");
-        const modalHighlights = document.getElementById("modalHighlights");
-        const modalTip = document.getElementById("modalTip");
-        let previousFocusedElement = null;
+let index = 0;
+// Hiển thị dữ liệu từ mảng
+function hienThiAnh() {
+    slides.innerHTML = places.map(place => `
+        <div class="slide" id="slide-${place.id}">
+            <img src="${place.image}" alt="${place.name}">
 
-        function openPlaceDetails(card) {
-            const details = placeDetails[card.dataset.place];
-            if (!details) return;
+            <div class="description">
+                <h2>${place.name}</h2>
+                <p>${place.description}</p>
+            </div>
+        </div>
+    `).join("");
+    const firstSlide = slides.firstElementChild.cloneNode(true);
+    firstSlide.id = "slide-clone";
+    slides.appendChild(firstSlide);
+}
+function chuyenAnh() {
+    index++;
 
-            const cardImage = card.querySelector("img");
-            previousFocusedElement = card;
-            modalImage.src = cardImage ? cardImage.src : "";
-            modalImage.alt = details.title;
-            modalTitle.textContent = details.title;
-            modalDescription.textContent = details.description;
-            modalTip.textContent = details.tip;
-            modalHighlights.replaceChildren();
+    slides.style.transition = "transform 0.8s ease-in-out";
+    slides.style.transform = `translateX(-${index * 100}%)`;
 
-            details.highlights.forEach(function (highlight) {
-                const item = document.createElement("li");
-                item.textContent = highlight;
-                modalHighlights.appendChild(item);
-            });
+    // Nếu tới ảnh đầu tiên được nhân đôi
+    if (index === places.length) {
+        setTimeout(() => {
+            slides.style.transition = "none";
+            index = 0;
+            slides.style.transform = "translateX(0)";
 
-            placeModal.classList.add("is-open");
-            placeModal.setAttribute("aria-hidden", "false");
-            document.body.classList.add("modal-open");
-            placeModal.querySelector(".place-modal-close").focus();
-        }
-
-        function closePlaceDetails() {
-            placeModal.classList.remove("is-open");
-            placeModal.setAttribute("aria-hidden", "true");
-            document.body.classList.remove("modal-open");
-            if (previousFocusedElement) previousFocusedElement.focus();
-        }
-
-        document.querySelectorAll(".place-card[data-place]").forEach(function (card) {
-            card.addEventListener("click", function () {
-                openPlaceDetails(card);
-            });
-            card.addEventListener("keydown", function (event) {
-                if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    openPlaceDetails(card);
-                }
-            });
-        });
-
-        placeModal.querySelectorAll("[data-close-modal]").forEach(function (element) {
-            element.addEventListener("click", closePlaceDetails);
-        });
-
-        document.addEventListener("keydown", function (event) {
-            if (event.key === "Escape" && placeModal.classList.contains("is-open")) {
-                closePlaceDetails();
-            }
-        });
-
-        (function () {
-            const lightbox = document.getElementById("imageLightbox");
-            const lightboxImage = document.getElementById("lightboxImage");
-            const lightboxCaption = document.getElementById("lightboxCaption");
-            const cards = document.querySelectorAll(".rooms-grid .zoomable-card");
-            let lastFocusedCard = null;
-
-            function openLightbox(card) {
-                const image = card.querySelector(".room-image img");
-                const caption = card.querySelector(".room-badge");
-                if (!image) return;
-
-                lastFocusedCard = card;
-                lightboxImage.src = image.currentSrc || image.src;
-                lightboxImage.alt = image.alt || (caption ? caption.textContent.trim() : "Ảnh địa điểm du lịch");
-                lightboxCaption.textContent = caption ? caption.textContent.trim() : "";
-                lightbox.classList.add("is-open");
-                lightbox.setAttribute("aria-hidden", "false");
-                document.body.classList.add("lightbox-open");
-                lightbox.querySelector(".image-lightbox-close").focus();
-            }
-
-            function closeLightbox() {
-                lightbox.classList.remove("is-open");
-                lightbox.setAttribute("aria-hidden", "true");
-                document.body.classList.remove("lightbox-open");
-                lightboxImage.src = "";
-                if (lastFocusedCard) lastFocusedCard.focus();
-            }
-
-            cards.forEach(function (card) {
-                card.addEventListener("click", function () {
-                    openLightbox(card);
-                });
-                card.addEventListener("keydown", function (event) {
-                    if (event.key === "Enter" || event.key === " ") {
-                        event.preventDefault();
-                        openLightbox(card);
-                    }
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    slides.style.transition =
+                        "transform 0.8s ease-in-out";
                 });
             });
+        }, 800);
+    }
+}
 
-            lightbox.querySelectorAll("[data-close-lightbox]").forEach(function (element) {
-                element.addEventListener("click", closeLightbox);
-            });
+hienThiAnh();
 
-            document.addEventListener("keydown", function (event) {
-                if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
-                    closeLightbox();
-                }
+setInterval(chuyenAnh, 3800);
+
+
+
+// 8 ảnh 
+const diadiemhot = [
+    {
+        id: "dinh-ban-co",
+        ten: "Đỉnh Bàn Cờ",
+        anh: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600",
+        mota: "Đỉnh Bàn Cờ là điểm tham quan nổi tiếng trên bán đảo Sơn Trà, Đà Nẵng, có cảnh núi non và tầm nhìn rộng ra thành phố.",
+        vitri: "Bán đảo Sơn Trà, thành phố Đà Nẵng.",
+
+        mota: "Đỉnh Bàn Cờ là điểm tham quan nổi tiếng trên bán đảo Sơn Trà, Đà Nẵng.",
+
+        vitri: "Bán đảo Sơn Trà, thành phố Đà Nẵng.",
+
+        lichsu: "Đỉnh Bàn Cờ gắn với truyền thuyết về hai vị tiên đánh cờ trên đỉnh núi.",
+
+        hoatdong: "Du khách có thể ngắm cảnh thành phố, chụp ảnh và khám phá thiên nhiên.",
+
+        Nenlam: "Nên kiểm tra đường đi và điều kiện thời tiết trước khi tham quan."
+    },
+    {
+        id: "cau-rong",
+        ten: "Cầu Rồng",
+        anh: "https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=600",
+        mota: "Cầu Rồng là công trình kiến trúc nổi bật bắc qua sông Hàn. Cây cầu nổi tiếng với hình dáng rồng và hoạt động phun lửa, phun nước vào những dịp nhất định.",
+        vitri: "Bắc qua sông Hàn, thành phố Đà Nẵng."
+    },
+    {
+        id: "ba-na-hills",
+        ten: "Bà Nà Hills",
+        anh: "https://images.unsplash.com/photo-1464278533981-50106e6176b1?w=600",
+        mota: "Bà Nà Hills là khu du lịch trên núi với khí hậu mát mẻ, cảnh quan thiên nhiên, công trình kiến trúc và Cầu Vàng nổi tiếng.",
+        vitri: "Khu vực núi Bà Nà, thành phố Đà Nẵng."
+    },
+    {
+        id: "cau-song-han",
+        ten: "Cầu Sông Hàn",
+        anh: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600",
+        mota: "Cầu Sông Hàn là một biểu tượng của Đà Nẵng, nổi bật với thiết kế cầu quay và vị trí kết nối hai bờ sông Hàn.",
+        vitri: "Trung tâm thành phố Đà Nẵng."
+    },
+    {
+        id: "non-nuoc",
+        ten: "Non Nước",
+        anh: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600",
+        mota: "Khu vực Non Nước nổi tiếng với bãi biển, cảnh quan ven biển và làng nghề điêu khắc đá mỹ nghệ truyền thống.",
+        vitri: "Khu vực Ngũ Hành Sơn, thành phố Đà Nẵng."
+    },
+    {
+        id: "bien-my-khe",
+        ten: "Biển Mỹ Khê",
+        anh: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600",
+        mota: "Biển Mỹ Khê thu hút du khách với bãi cát dài, làn nước biển xanh và nhiều hoạt động vui chơi, nghỉ dưỡng.",
+        vitri: "Ven biển thành phố Đà Nẵng."
+    },
+    {
+        id: "ban-dao-son-tra",
+        ten: "Bán đảo Sơn Trà",
+        anh: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600",
+        mota: "Bán đảo Sơn Trà có hệ sinh thái phong phú, rừng tự nhiên, đường ven biển và nhiều điểm ngắm cảnh đẹp.",
+        vitri: "Phía đông bắc thành phố Đà Nẵng."
+    },
+    {
+        id: "pho-co-hoi-an",
+        ten: "Phố Cổ Hội An",
+        anh: "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600",
+        mota: "Phố cổ Hội An nổi tiếng với những ngôi nhà cổ, đèn lồng nhiều màu sắc, các con phố nhỏ và nét văn hóa truyền thống.",
+        vitri: "Thành phố Hội An, Đà Nẵng."
+    }
+];
+const placeGrid = document.getElementById("placeGrid");
+const toggleButton = document.getElementById("toggleButton");
+
+if (placeGrid && toggleButton) {
+    for (let i = 0; i < diadiemhot.length; i++) {
+
+        const dd = diadiemhot[i];
+
+        const the = document.createElement("a");
+
+        // Nhấn thẻ sẽ mở đúng địa điểm ở trang chi tiết
+        the.href = "diadiem.html#" + dd.id;
+        the.className = "place-card";
+        if (i >= 4) {
+            the.classList.add("hidden");
+        }
+
+        the.innerHTML = `
+            <img src="${dd.anh}" alt="${dd.ten}">
+
+            <div class="place-info">
+                <h3>${dd.ten}</h3>
+                <p>${dd.mota}</p>
+            </div>
+        `;
+        placeGrid.appendChild(the);
+    }
+    // Xem thêm / Thu gọn
+    toggleButton.addEventListener("click", function () {
+
+        const cacThe = placeGrid.querySelectorAll(".place-card");
+        const dangThuGon = placeGrid.querySelector(
+            ".place-card.hidden"
+        ) !== null;
+
+        for (let i = 0; i < cacThe.length; i++) {
+
+            if (dangThuGon) {
+                // Hiện tất cả thẻ
+                cacThe[i].classList.remove("hidden");
+            } else if (i >= 4) {
+                // Ẩn 4 thẻ cuối
+                cacThe[i].classList.add("hidden");
+            }
+        }
+
+        toggleButton.textContent = dangThuGon
+            ? "Thu gọn"
+            : "Xem thêm";
+    });
+}
+// nội dung trang chi tiết
+
+const detailList = document.getElementById("detailList");
+
+if (detailList) {
+
+    // Duyệt mảng để tạo nội dung chi tiết cho 8 địa điểm
+    for (let i = 0; i < diadiemhot.length; i++) {
+
+        const dd = diadiemhot[i];
+
+        const chiTiet = document.createElement("section");
+
+        chiTiet.className = "detail-item";
+        chiTiet.id = dd.id;
+   chiTiet.innerHTML = `
+    <img src="${dd.anh}" alt="${dd.ten}">
+
+    <div class="detail-info">
+        <h2>${dd.ten}</h2>
+
+        <p>${dd.mota}</p>
+
+        <p><strong>Vị trí:</strong> ${dd.vitri}</p>
+
+        ${dd.lichsu ? `
+            <h3>Lịch sử và truyền thuyết</h3>
+            <p>${dd.lichsu}</p>
+        ` : ""}
+
+        ${dd.hoatdong ? `
+            <h3>Hoạt động tham quan</h3>
+            <p>${dd.hoatdong}</p>
+        ` : ""}
+        ${dd.luuy ? `
+            <h3>Lưu ý khi tham quan</h3>
+            <p>${dd.luuy}</p>
+        ` : ""}
+
+        <a href="nhap.html" class="back-link">
+            ← Quay lại danh sách địa điểm
+        </a>
+    </div>
+`;
+        detailList.appendChild(chiTiet);
+    }
+
+    // Đợi các phần tử được tạo rồi cuộn đến địa điểm được chọn
+    const maDiaDiem = decodeURIComponent(
+        window.location.hash.slice(1)
+    );
+
+    if (maDiaDiem) {
+        const diaDiemDuocChon = document.getElementById(maDiaDiem);
+
+        if (diaDiemDuocChon) {
+            diaDiemDuocChon.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
             });
-        })();
+        }
+    }
+}
+
+// điểm hot 
+
+
+const moihot = [
+    {
+        id: 1,
+        ten: "Cầu Vàng",
+        anh: "https://datviettour.com.vn/uploads/images/tin-tuc-SEO/mien-trung/Da-Nang/gioi-thieu-cau-vang-da-nang.jpg"
+    },
+    {
+        id: 2,
+        ten: "Cầu Rồng",
+        anh: "https://d2e5ushqwiltxm.cloudfront.net/wp-content/uploads/sites/86/2020/02/18085024/dragon-bridge-and-firework-ph%C3%A1o-hoa-tr%C3%AAn-c%E1%BA%A7u-r%E1%BB%93ng-Danang-Discovery-4-famous-bridge-in-danang-Restaurant-near-me-dragon-bridge-history-a-new-iconic-image-of-danang.jpg"
+    },
+    {
+        id: 3,
+        ten: "Bà Nà Hills",
+        anh: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKqfvzNeGVpScmV-G6eaQCrRgHkG3aXfjkMQ6622xR8cWrKUwax_glAq0&s=10"
+    },
+    {
+        id: 4,
+        ten: "Phố Cổ Hội An",
+        anh: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzKRIXrQSw_2kpDoPIXeWAuXwk13yFbzKSjDk7ileRTg&s=10"
+    },
+    {
+        id: 5,
+        ten: "Cầu Sông Hàn",
+        anh: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF0osuAMr5SXE1oPxdEZ_0EDwtNGJmOrOWW6WvBLE76A&s=10"
+    },
+    {
+        id: 6,
+        ten: "Biển Mỹ Khê",
+        anh: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPlO1PpltxrRIZ1ksQbEm2FZhw9Urrv4HvQFVcN24Bjw&s=10"
+    }
+];
+/* 2. Lấy các phần tử HTML */
+const danhSachDiaDiem =
+    document.getElementById("danhSachDiaDiem");
+
+const hopPhongTo =
+    document.getElementById("hopPhongTo");
+
+const anhPhongTo =
+    document.getElementById("anhPhongTo");
+
+const tenAnhPhongTo =
+    document.getElementById("tenAnhPhongTo");
+
+const nutDong =
+    document.getElementById("nutDong");
+
+
+/* 3. Hiển thị danh sách địa điểm */
+function hienThiDiaDiem() {
+    if (danhSachDiaDiem.dataset.daRender === "true") {
+        return;
+    }
+
+    danhSachDiaDiem.dataset.daRender = "true";
+
+    let html = "";
+
+    moihot.forEach(function (diaDiem) {
+        html += `
+            <div class="dia-diem"
+                 data-id="${diaDiem.id}"
+                 tabindex="0"
+                 role="button"
+                 aria-label="Phóng to ảnh ${diaDiem.ten}">
+
+                <img
+                    src="${diaDiem.anh}"
+                    alt="${diaDiem.ten}"
+                    loading="lazy"
+                >
+
+                <div class="ten-dia-diem">
+                    ${diaDiem.ten}
+                </div>
+            </div>
+        `;
+    });
+
+    danhSachDiaDiem.innerHTML = html;
+}
+function timDiaDiem(id) {
+    return moihot.find(function (diaDiem) {
+        return diaDiem.id === Number(id);
+    });
+}
+/* 5. Mở ảnh phóng to theo ID */
+function moAnh(id) {
+    const diaDiem = timDiaDiem(id);
+    if (!diaDiem) {
+        return;
+    }
+    anhPhongTo.src = diaDiem.anh;
+    anhPhongTo.alt = diaDiem.ten;
+    tenAnhPhongTo.textContent = diaDiem.ten;
+
+    hopPhongTo.classList.add("hien");
+    hopPhongTo.setAttribute("aria-hidden", "false");
+
+    // Khóa cuộn trang khi xem ảnh
+    document.body.style.overflow = "hidden";
+}
+
+
+/* 6. Đóng ảnh phóng to */
+function dongAnh() {
+    hopPhongTo.classList.remove("hien");
+    hopPhongTo.setAttribute("aria-hidden", "true");
+
+    document.body.style.overflow = "";
+
+    // Xóa ảnh cũ sau khi đóng
+    anhPhongTo.removeAttribute("src");
+}
+/* 7. Bắt sự kiện bấm ảnh bằng event delegation
+   Chỉ đăng ký sự kiện một lần */
+danhSachDiaDiem.addEventListener("click", function (event) {
+    const theDiaDiem = event.target.closest(".dia-diem");
+
+    if (!theDiaDiem) {
+        return;
+    }
+
+    moAnh(theDiaDiem.dataset.id);
+});
+/* Hỗ trợ mở ảnh bằng phím Enter hoặc Space */
+danhSachDiaDiem.addEventListener("keydown", function (event) {
+    if (event.key !== "Enter" && event.key !== " ") {
+        return;
+    }
+    const theDiaDiem = event.target.closest(".dia-diem");
+
+    if (!theDiaDiem) {
+        return;
+    }
+    event.preventDefault();
+    moAnh(theDiaDiem.dataset.id);
+});
+
+
+nutDong.addEventListener("click", dongAnh);
+hopPhongTo.addEventListener("click", function (event) {
+    if (event.target === hopPhongTo) {
+        dongAnh();
+    }
+});
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" &&
+        hopPhongTo.classList.contains("hien")) {
+        dongAnh();
+    }
+});
+
+hienThiDiaDiem();
