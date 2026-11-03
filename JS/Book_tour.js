@@ -113,11 +113,24 @@ function renderBookingList() {
             status.className = `booking-status${isCancelled ? " is-cancelled" : ""}`;
             status.textContent = `Trạng thái: ${booking.status || "Đã xác nhận"}`;
             details.append(status);
+            if (booking.paymentStatus) {
+                const paymentStatus = document.createElement("p");
+                paymentStatus.textContent = `Thanh toán: ${booking.paymentStatus}`;
+                details.append(paymentStatus);
+            }
 
             const actions = document.createElement("div");
             actions.className = "booking-item-actions";
 
             if (!isCancelled) {
+                if (booking.paymentStatus === "Chưa thanh toán") {
+                    const paymentLink = document.createElement("a");
+                    paymentLink.className = "btn-sua";
+                    paymentLink.href = `Thanhtoan.html?booking=${encodeURIComponent(booking.id)}`;
+                    paymentLink.textContent = "Tiếp tục thanh toán";
+                    actions.append(paymentLink);
+                }
+
                 const guestControl = document.createElement("div");
                 guestControl.className = "guest-control";
 
@@ -250,7 +263,8 @@ if (bookingForm) {
             guests: Number(document.getElementById("guests").value),
             note: document.getElementById("note").value.trim(),
             createdAt: new Date().toISOString(),
-            status: "Đã xác nhận"
+            status: "Chờ thanh toán",
+            paymentStatus: "Chưa thanh toán"
         };
 
         if (!booking.tour || !booking.customerName || !booking.phone || !booking.departureDate ||
@@ -264,10 +278,7 @@ if (bookingForm) {
             const bookings = readBookings();
             bookings.push(booking);
             saveBookings(bookings);
-
-            bookingForm.reset();
-            bookingMessage.textContent = "✓ Gửi yêu cầu đặt tour thành công! Đà Nẵng Travel sẽ liên hệ với bạn để xác nhận.";
-            bookingMessage.style.color = "#0d8a7a";
+            window.location.href = `Thanhtoan.html?booking=${encodeURIComponent(booking.id)}`;
         } catch (error) {
             showBookingError(error);
         }

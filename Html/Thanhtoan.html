@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0d8a7a">
+    <title>Thanh toán mô phỏng | Đà Nẵng Travel</title>
+    <link rel="stylesheet" href="../Css/Thanhtoan.css">
+</head>
+<body>
+    <main class="payment-page">
+        <a class="back-link" href="Book_tour.html">&larr; Quay lại đặt tour</a>
+        <header class="page-heading">
+            <p class="eyebrow">ĐÀ NẴNG TRAVEL</p>
+            <h1>Thanh toán</h1>
+            <p>Xem lại thông tin đơn và dùng mã QR mô phỏng cố định.</p>
+        </header>
+
+        <p id="pageMessage" class="message" role="status" aria-live="polite"></p>
+
+        <section id="paymentPanel" class="payment-card" hidden>
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">THÔNG TIN ĐƠN</p>
+                    <h2>Đơn đặt tour của bạn</h2>
+                </div>
+                <span id="bookingStatus" class="status-badge"></span>
+            </div>
+
+            <dl id="bookingSummary" class="booking-summary"></dl>
+
+            <div id="paidNotice" class="paid-notice" role="status" hidden></div>
+
+            <form id="paymentForm" novalidate>
+                <label for="paymentAmount">Số tiền muốn thanh toán (VND)</label>
+                <input id="paymentAmount" name="paymentAmount" type="number" min="1" step="1"
+                       inputmode="numeric" placeholder="Ví dụ: 500000" required>
+                <small class="form-hint">Nhập số tiền đã thỏa thuận. Mã QR cố định, không thay đổi theo số tiền. Đây là bản demo, không phát sinh giao dịch thật.</small>
+                <p id="amountError" class="field-error" role="alert"></p>
+
+                <div class="transfer-panel">
+                    <div class="transfer-copy">
+                        <p class="eyebrow">CHUYỂN KHOẢN MÔ PHỎNG</p>
+                        <h3>Quét mã QR demo</h3>
+                        <p>Mã QR demo cố định, không chứa số tiền hoặc thông tin đơn hàng, không liên kết ngân hàng và không thể dùng để chuyển tiền.</p>
+                    </div>
+                    <div id="qrCode" class="qr-code" role="img" aria-label="Mã QR thanh toán mô phỏng"></div>
+                    <p id="qrMessage" class="qr-message" role="status" aria-live="polite">Mã QR demo sẽ được tạo cố định, không đổi khi nhập số tiền.</p>
+                </div>
+
+                <button id="confirmPaymentButton" class="primary-button" type="submit" disabled>
+                    Xác nhận đã chuyển khoản (mô phỏng)
+                </button>
+            </form>
+
+            <a class="secondary-link" href="Book_tour.html">Quản lý đơn đặt tour</a>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="../JS/Thanhtoan.js"></script>
+</body>
+</html>
