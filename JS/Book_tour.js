@@ -3,6 +3,8 @@ const tourSelect = document.getElementById("tour");
 const bookingForm = document.getElementById("bookingForm");
 const bookingMessage = document.getElementById("bookingMessage");
 const departureDate = document.getElementById("departureDate");
+const guestsInput = document.getElementById("guests");
+const totalPrice = document.getElementById("totalPrice");
 const bookingList = document.getElementById("bookingList");
 const bookingListMessage = document.getElementById("bookingListMessage");
 const bookingLookupForm = document.getElementById("bookingLookupForm");
@@ -17,12 +19,28 @@ if (selectedTour && tourSelect) {
     tourSelect.value = selectedTour;
 }
 
-// Không cho khách chọn ngày khởi hành trong quá khứ.
 if (departureDate) {
     const today = new Date();
     const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
         .toISOString().split("T")[0];
     departureDate.min = localToday;
+}
+
+function calculatePrice() {
+    if (!tourSelect || !guestsInput || !totalPrice) {
+        return;
+    }
+
+    const selectedOption = tourSelect.options[tourSelect.selectedIndex];
+    const price = Number(selectedOption.dataset.price) || 0;
+    const guests = Math.max(1, Number(guestsInput.value) || 1);
+    totalPrice.textContent = `${(price * guests).toLocaleString("vi-VN")} VNĐ`;
+}
+
+if (tourSelect && guestsInput) {
+    tourSelect.addEventListener("change", calculatePrice);
+    guestsInput.addEventListener("input", calculatePrice);
+    calculatePrice();
 }
 
 function readBookings() {
@@ -113,11 +131,24 @@ function renderBookingList() {
             status.className = `booking-status${isCancelled ? " is-cancelled" : ""}`;
             status.textContent = `Trạng thái: ${booking.status || "Đã xác nhận"}`;
             details.append(status);
+            if (booking.paymentStatus) {
+                const paymentStatus = document.createElement("p");
+                paymentStatus.textContent = `Thanh toán: ${booking.paymentStatus}`;
+                details.append(paymentStatus);
+            }
 
             const actions = document.createElement("div");
             actions.className = "booking-item-actions";
 
             if (!isCancelled) {
+                if (booking.paymentStatus === "Chưa thanh toán") {
+                    const paymentLink = document.createElement("a");
+                    paymentLink.className = "btn-sua";
+                    paymentLink.href = `Thanhtoan.html?booking=${encodeURIComponent(booking.id)}`;
+                    paymentLink.textContent = "Tiếp tục thanh toán";
+                    actions.append(paymentLink);
+                }
+
                 const guestControl = document.createElement("div");
                 guestControl.className = "guest-control";
 
@@ -250,10 +281,11 @@ if (bookingForm) {
             guests: Number(document.getElementById("guests").value),
             note: document.getElementById("note").value.trim(),
             createdAt: new Date().toISOString(),
-            status: "Đã xác nhận"
+            status: "Chờ thanh toán",
+            paymentStatus: "Chưa thanh toán"
         };
 
-        if (!booking.tour || !booking.customerName || !booking.phone || !booking.departureDate ||
+        if (!tourSelect.value || !booking.customerName || !booking.phone || !booking.departureDate ||
             !Number.isInteger(booking.guests) || booking.guests < 1) {
             bookingMessage.textContent = "Vui lòng kiểm tra và điền đầy đủ các thông tin bắt buộc.";
             bookingMessage.style.color = "#c44b36";
@@ -264,8 +296,10 @@ if (bookingForm) {
             const bookings = readBookings();
             bookings.push(booking);
             saveBookings(bookings);
+            window.location.href = `Thanhtoan.html?booking=${encodeURIComponent(booking.id)}`;
 
             bookingForm.reset();
+            calculatePrice();
             bookingMessage.textContent = "✓ Gửi yêu cầu đặt tour thành công! Đà Nẵng Travel sẽ liên hệ với bạn để xác nhận.";
             bookingMessage.style.color = "#0d8a7a";
         } catch (error) {

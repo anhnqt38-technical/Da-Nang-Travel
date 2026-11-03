@@ -1,12 +1,11 @@
-const usernameInput = document.getElementById("username");
-const passwordInput = document.getElementById("password");
-const successMessage = document.getElementById("success");
-const storageError = document.getElementById("storageError");
+function showError(id, message) {
+    document.getElementById(id).textContent = message;
+}
 
-try {
-    usernameInput.value = localStorage.getItem("daNangUsername") || "";
-} catch (error) {
-    storageError.textContent = "Không thể đọc thông tin đăng nhập đã lưu trên thiết bị này.";
+function clearErrors() {
+    document.querySelectorAll(".error-message").forEach(error => {
+        error.textContent = "";
+    });
 }
 
 function togglePassword(id, icon) {
@@ -18,28 +17,30 @@ function togglePassword(id, icon) {
     icon.classList.toggle("fa-eye-slash", showingPassword);
 }
 
+try {
+    document.getElementById("username").value =
+        localStorage.getItem("daNangUsername") || "";
+} catch (error) {
+    showError("storageError", "Không thể đọc thông tin đăng nhập đã lưu trên thiết bị này.");
+}
+
 document.getElementById("loginForm").addEventListener("submit", function(event) {
     event.preventDefault();
-    document.getElementById("usernameError").textContent = "";
-    document.getElementById("passwordError").textContent = "";
-    storageError.textContent = "";
-    successMessage.style.display = "none";
+    clearErrors();
+    document.getElementById("success").style.display = "none";
 
-    const loginIdentifier = usernameInput.value.trim();
-    const password = passwordInput.value;
-    let valid = true;
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value;
 
-    if (!loginIdentifier) {
-        document.getElementById("usernameError").textContent = "Vui lòng nhập tên đăng nhập hoặc số điện thoại.";
-        valid = false;
+    if (!username) {
+        showError("usernameError", "Vui lòng nhập tên đăng nhập hoặc số điện thoại.");
     }
 
     if (!password) {
-        document.getElementById("passwordError").textContent = "Vui lòng nhập mật khẩu.";
-        valid = false;
+        showError("passwordError", "Vui lòng nhập mật khẩu.");
     }
 
-    if (!valid) {
+    if (!username || !password) {
         return;
     }
 
@@ -48,25 +49,26 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         const savedPhone = localStorage.getItem("daNangPhone");
         const savedPassword = localStorage.getItem("daNangPassword");
 
-        if (loginIdentifier !== savedUsername && loginIdentifier !== savedPhone) {
-            document.getElementById("usernameError").textContent =
-                "Tên đăng nhập hoặc số điện thoại không đúng, hoặc tài khoản chưa được đăng ký.";
+        if (username !== savedUsername && username !== savedPhone) {
+            showError(
+                "usernameError",
+                "Tên đăng nhập hoặc số điện thoại không đúng, hoặc tài khoản chưa được đăng ký."
+            );
             return;
         }
 
         if (password !== savedPassword) {
-            document.getElementById("passwordError").textContent =
-                "Bạn đã nhập sai mật khẩu, vui lòng nhập lại.";
+            showError("passwordError", "Bạn đã nhập sai mật khẩu, vui lòng nhập lại.");
             return;
         }
 
         localStorage.setItem("daNangLoggedIn", "true");
     } catch (error) {
-        storageError.textContent = "Không thể kiểm tra tài khoản. Hãy bật bộ nhớ trình duyệt rồi thử lại.";
+        showError("storageError", "Không thể kiểm tra tài khoản. Hãy bật bộ nhớ trình duyệt rồi thử lại.");
         return;
     }
 
-    successMessage.style.display = "block";
+    document.getElementById("success").style.display = "block";
     window.setTimeout(() => {
         window.location.href = "index.html";
     }, 1200);

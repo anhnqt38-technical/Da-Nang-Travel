@@ -99,8 +99,3 @@ document.getElementById("registerForm")
         }, 1200);
     }
 });
-
-// GOOGLE / FACEBOOK DEMO
-function socialLogin(provider) {
-    alert("Chức năng đăng nhập " + provider + " cần tích hợp OAuth!");
-}

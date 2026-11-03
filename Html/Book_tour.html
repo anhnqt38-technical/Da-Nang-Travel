@@ -10,7 +10,6 @@
 </head>
 
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="header-logo">
             <img src="../image/Logo.png" alt="Logo Đà Nẵng Travel" class="logo-img">
@@ -28,7 +27,6 @@
             <a href="Dangxuat.html" class="menu-item" id="logoutLink" hidden>Đăng xuất</a>
         </nav>
     </header>
-    <!-- Nội dung chính -->
     <main class="booking-main">
         <h2>Thông tin đặt tour</h2>
 
@@ -37,8 +35,15 @@
                 <label>Chọn hành trình *</label>
                 <select id="tour">
                     <option value="">-- Chọn hành trình --</option>
-                    <option value="Đà Nẵng – Bà Nà – Hội An (3 ngày 2 đêm)">Đà Nẵng – Bà Nà – Hội An (3 ngày 2 đêm)</option>
-                    <option value="Đà Nẵng – Sơn Trà – Ngũ Hành Sơn">Đà Nẵng – Sơn Trà – Ngũ Hành Sơn</option>
+                    <option value="Đà Nẵng – Bà Nà – Hội An (3 ngày 2 đêm)" data-price="3500000">
+                        Đà Nẵng – Bà Nà – Hội An (3 ngày 2 đêm)
+                    </option>
+                    <option value="Một ngày ở Đà Nẵng" data-price="1200000">
+                        Một ngày ở Đà Nẵng
+                    </option>
+                    <option value="Hẹn hò cùng phố cổ Hội An" data-price="1500000">
+                        Hẹn hò cùng phố cổ Hội An
+                    </option>
                 </select>
             </div>
 
@@ -67,16 +72,22 @@
                 <input type="number" id="guests" value="1" min="1">
             </div>
 
+            <div class="total-price">
+                <h3>Tổng thanh toán</h3>
+                <p id="totalPrice">0 VNĐ</p>
+            </div>
+
             <div class="form-group">
                 <label>Yêu cầu thêm</label>
                 <textarea id="note" placeholder="Bạn có yêu cầu đặc biệt nào không?"></textarea>
             </div>
 
-            <button type="submit" class="btn-submit">Gửi yêu cầu đặt tour</button>
+            <button type="submit" class="btn-submit">Tiếp tục đến thanh toán</button>
             <p id="bookingMessage" style="margin-top: 10px; font-weight: bold;"></p>
+            <button type="submit" class="btn-submit">Gửi yêu cầu đặt tour</button>
+            <p id="bookingMessage"></p>
         </form>
 
-        <!-- Chỉ hiện thông tin và thao tác sau khi khách tra cứu bằng số điện thoại. -->
         <div id="vung-quan-ly-don" class="management-box" aria-live="polite">
             <h3>Kiểm tra lại đơn đặt tour</h3>
             <p>Nhập số điện thoại đã dùng khi đặt tour để xem và quản lý yêu cầu của bạn.</p>
@@ -92,7 +103,6 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="foo_container">
             <div class="img_logo">

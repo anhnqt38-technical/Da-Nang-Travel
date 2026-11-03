@@ -236,10 +236,15 @@ body {
     justify-content: center;
     padding: 30px;
     background: rgba(0, 0, 0, 0.88);
+.pricing-section {
+    width: min(100%, 1050px);
+    margin: 20px auto 0;
 }
 
 .place-detail-modal.hien {
     display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .place-detail-content {
@@ -271,6 +276,12 @@ body {
     margin-bottom: 12px;
     line-height: 1.8;
     color: #526071;
+.item-left {
+    display: grid;
+    grid-template-columns: minmax(120px, 0.85fr) minmax(0, 1fr);
+    gap: 24px;
+    align-items: center;
+    min-width: 0;
 }
 
 .place-detail-info h3 {
@@ -337,6 +348,29 @@ body {
     display: inline-block;
     color: #008b8b;
     text-decoration: none;
+@media (max-width: 700px) {
+    .pricing-item {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 22px 0;
+    }
+
+    .item-left {
+        grid-template-columns: minmax(100px, 0.65fr) minmax(0, 1fr);
+        gap: 18px;
+    }
+}
+
+.watermark {
+    position: absolute;
+    right: 0;
+    bottom: -15px;
+    color: rgba(49, 151, 149, 0.08);
+    font-size: 65px;
+    font-weight: 700;
+    text-transform: uppercase;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .back-link:hover {
