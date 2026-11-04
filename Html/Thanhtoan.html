@@ -13,7 +13,7 @@
         <header class="page-heading">
             <p class="eyebrow">ĐÀ NẴNG TRAVEL</p>
             <h1>Thanh toán</h1>
-            <p>Xem lại thông tin đơn và dùng mã QR mô phỏng cố định.</p>
+            <p>Chọn đặt cọc 50% hoặc thanh toán toàn bộ cho đơn đã được xác nhận.</p>
         </header>
 
         <p id="pageMessage" class="message" role="status" aria-live="polite"></p>
@@ -32,24 +32,20 @@
             <div id="paidNotice" class="paid-notice" role="status" hidden></div>
 
             <form id="paymentForm" novalidate>
-                <label for="paymentAmount">Số tiền muốn thanh toán (VND)</label>
-                <input id="paymentAmount" name="paymentAmount" type="number" min="1" step="1"
-                       inputmode="numeric" placeholder="Ví dụ: 500000" required>
-                <small class="form-hint">Nhập số tiền đã thỏa thuận. Mã QR cố định, không thay đổi theo số tiền. Đây là bản demo, không phát sinh giao dịch thật.</small>
-                <p id="amountError" class="field-error" role="alert"></p>
+                <fieldset id="paymentOptions" class="option-list"></fieldset>
 
                 <div class="transfer-panel">
                     <div class="transfer-copy">
-                        <p class="eyebrow">CHUYỂN KHOẢN MÔ PHỎNG</p>
-                        <h3>Quét mã QR demo</h3>
+                        <p class="eyebrow">CHUYỂN KHOẢN</p>
+                        <h3>Quét mã QR </h3>
                         <p>Mã QR demo cố định, không chứa số tiền hoặc thông tin đơn hàng, không liên kết ngân hàng và không thể dùng để chuyển tiền.</p>
                     </div>
-                    <div id="qrCode" class="qr-code" role="img" aria-label="Mã QR thanh toán mô phỏng"></div>
-                    <p id="qrMessage" class="qr-message" role="status" aria-live="polite">Mã QR demo sẽ được tạo cố định, không đổi khi nhập số tiền.</p>
+                    <div id="qrCode" class="qr-code" role="img" aria-label="Mã QR thanh toán"></div>
+                    <p id="qrMessage" class="qr-message" role="status" aria-live="polite">Vui lòng chọn hình thức thanh toán.</p>
                 </div>
 
                 <button id="confirmPaymentButton" class="primary-button" type="submit" disabled>
-                    Xác nhận đã chuyển khoản (mô phỏng)
+                    Xác nhận đã chuyển khoản
                 </button>
             </form>
 
