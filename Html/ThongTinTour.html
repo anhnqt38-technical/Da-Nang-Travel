@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin tour | Đà Nẵng Travel</title>
+    <link rel="stylesheet" href="../Css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-logo">
+            <img src="../image/Logo.png" alt="Logo Đà Nẵng Travel" class="logo-img">
+            <span class="logo-text">Đà Nẵng Travel</span>
+        </div>
+        <nav class="header-menu">
+            <a href="index.html" class="menu-item">Trang Chủ</a>
+            <a href="Journey.html" class="menu-item">Hành Trình</a>
+            <a href="Tour_guide.html" class="menu-item">Hướng Dẫn Viên</a>
+            <a href="Book_tour.html" class="menu-item">Đặt Tour</a>
+            <a href="About_us.html" class="menu-item">Liên Hệ</a>
+            <a href="Dangnhap.html" class="menu-item" id="loginLink" hidden>Đăng nhập</a>
+            <a href="Dangky.html" class="menu-item" id="registerLink">Đăng ký</a>
+            <div class="account-menu" id="accountMenu" hidden>
+                <button class="menu-item account-greeting" id="accountGreeting" type="button"
+                        aria-expanded="false" aria-controls="accountDropdown"></button>
+                <div class="account-dropdown" id="accountDropdown" hidden>
+                    <a href="TaiKhoan.html">Quản lý tài khoản</a>
+                    <a href="ThongTinTour.html">Thông tin tour</a>
+                </div>
+            </div>
+            <a href="Dangxuat.html" class="menu-item" id="logoutLink" hidden>Đăng xuất</a>
+        </nav>
+    </header>
+
+    <main class="account-page">
+        <h1>Thông tin tour</h1>
+        <p class="account-page-intro">Các tour đã đặt bằng số điện thoại trong tài khoản của bạn.</p>
+        <div class="tour-details" id="tourDetails" aria-live="polite"></div>
+    </main>
+
+    <script src="../JS/Dangxuat.js"></script>
+    <script src="../JS/ThongTinTour.js"></script>
+</body>
+</html>

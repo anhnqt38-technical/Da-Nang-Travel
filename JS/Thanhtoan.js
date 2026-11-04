@@ -309,11 +309,21 @@ paymentForm.addEventListener("submit", function(event) {
         currentBooking = booking;
         refresh();
 
-        alert(
-            choice.type === "deposit"
-                ? `✓ Đã đặt cọc ${money(choice.amount)}.\n\nVui lòng thanh toán phần còn lại ${money(info.total - choice.amount)} trước ngày ${info.deadline ? formatDate(info.deadline) : "khởi hành"}.`
-                : `✓ Đã thanh toán ${money(choice.amount)}. Cảm ơn bạn!`
-        );
+        if (choice.type === "deposit") {
+            alert(
+                `✓ Đã ghi nhận đặt cọc ${money(choice.amount)}.\n\n` +
+                `Số tiền còn lại cần thanh toán: ${money(info.total - choice.amount)}.` +
+                (info.deadline
+                    ? `\nHạn thanh toán: ${formatDate(info.deadline)}.`
+                    : "") +
+                "\n\nNhấn OK để về trang chủ. Nếu muốn thanh toán tiếp, hãy vào Thông tin tour và chọn \"Thanh toán phần còn lại\"."
+            );
+            window.location.href = "index.html";
+            return;
+        }
+
+        alert(`✓ Đã thanh toán ${money(choice.amount)}. Cảm ơn bạn! Nhấn OK để về trang chủ.`);
+        window.location.href = "index.html";
     } catch (error) {
         pageMessage.textContent = "Không thể lưu xác nhận thanh toán. Vui lòng kiểm tra bộ nhớ trình duyệt và thử lại.";
     }

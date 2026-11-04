@@ -80,6 +80,7 @@ document.getElementById("registerForm")
     if (valid) {
         try {
             localStorage.setItem("daNangUsername", fullname);
+            localStorage.setItem("daNangEmail", email);
             localStorage.setItem("daNangPhone", phone);
             localStorage.setItem("daNangEmail", email);
             localStorage.setItem("daNangPassword", password);
