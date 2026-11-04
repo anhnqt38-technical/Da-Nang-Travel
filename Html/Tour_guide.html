@@ -22,7 +22,14 @@
             <a href="About_us.html" class="menu-item active ">Liên Hệ</a>
             <a href="Dangnhap.html" class="menu-item" id="loginLink" hidden>Đăng nhập</a>
             <a href="Dangky.html" class="menu-item" id="registerLink">Đăng ký</a>
-            <span class="menu-item" id="accountGreeting" hidden></span>
+            <div class="account-menu" id="accountMenu" hidden>
+                <button class="menu-item account-greeting" id="accountGreeting" type="button"
+                        aria-expanded="false" aria-controls="accountDropdown"></button>
+                <div class="account-dropdown" id="accountDropdown" hidden>
+                    <a href="TaiKhoan.html">Quản lý tài khoản</a>
+                    <a href="ThongTinTour.html">Thông tin tour</a>
+                </div>
+            </div>
             <a href="Dangxuat.html" class="menu-item" id="logoutLink" hidden>Đăng xuất</a>
         </nav>
     </header>

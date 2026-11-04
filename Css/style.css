@@ -89,6 +89,161 @@ header {
     color: #238E8D;
 }
 
+.account-menu {
+    position: relative;
+}
+
+.account-greeting {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.account-dropdown {
+    position: absolute;
+    z-index: 20;
+    top: calc(100% + 12px);
+    right: 0;
+    min-width: 190px;
+    padding: 6px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    box-shadow: 0 8px 24px var(--shadow);
+}
+
+.account-dropdown a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.account-dropdown a:hover,
+.account-dropdown a:focus-visible {
+    color: var(--primary-dark);
+    background: var(--primary-soft);
+}
+
+.account-page {
+    width: min(760px, 92%);
+    margin: 48px auto;
+    padding: 32px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--surface);
+    box-shadow: 0 10px 30px var(--shadow);
+}
+
+.account-profile-page {
+    min-height: 390px;
+}
+
+.account-page h1 {
+    margin-bottom: 10px;
+    color: var(--navy);
+}
+
+.account-page-intro {
+    margin-bottom: 24px;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.account-details,
+.tour-details {
+    display: grid;
+    gap: 12px;
+}
+
+.account-detail,
+.tour-card {
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface-alt);
+}
+
+.account-detail {
+    min-height: 58px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding: 18px;
+}
+
+.account-detail strong,
+.tour-card strong {
+    color: var(--navy);
+}
+
+.tour-card h2 {
+    margin-bottom: 12px;
+    color: var(--primary-dark);
+    font-size: 18px;
+}
+
+.tour-card p {
+    margin-top: 8px;
+    line-height: 1.5;
+}
+
+.tour-payment-notice {
+    margin-top: 16px;
+    padding: 14px;
+    border-radius: 8px;
+    color: var(--navy);
+    background: var(--primary-soft);
+    line-height: 1.6;
+}
+
+.tour-payment-link {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 16px;
+    border-radius: 7px;
+    color: #ffffff;
+    background: var(--primary);
+    font-weight: 700;
+}
+
+.tour-payment-link:hover,
+.tour-payment-link:focus-visible {
+    color: #ffffff;
+    background: var(--primary-dark);
+}
+
+.account-notice {
+    padding: 14px;
+    border-radius: 8px;
+    color: var(--navy);
+    background: var(--primary-soft);
+    line-height: 1.6;
+}
+
+.account-notice a {
+    color: var(--primary-dark);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+    .account-page {
+        margin: 28px auto;
+        padding: 22px 18px;
+    }
+
+    .account-dropdown {
+        right: auto;
+        left: 0;
+    }
+}
+
 .slider {
     width: 100%;
     height: 75vh;

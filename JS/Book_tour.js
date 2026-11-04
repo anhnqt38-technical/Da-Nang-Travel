@@ -2,6 +2,7 @@
 const tourSelect = document.getElementById("tour");
 const bookingForm = document.getElementById("bookingForm");
 const bookingMessage = document.getElementById("bookingMessage");
+const bookingSubmitButton = bookingForm?.querySelector('button[type="submit"]');
 const departureDate = document.getElementById("departureDate");
 const guestsInput = document.getElementById("guests");
 const totalPrice = document.getElementById("totalPrice");
@@ -12,6 +13,7 @@ const lookupPhone = document.getElementById("lookupPhone");
 const bookingStorageKey = "tourBookings";
 const lastPhoneKey = "lastBookingPhone";
 let searchedPhone = "";
+let bookingSubmissionLocked = false;
 
 const params = new URLSearchParams(window.location.search);
 const selectedTour = params.get("tour");
@@ -96,6 +98,49 @@ function showBookingError(error) {
     bookingListMessage.textContent = "Không thể đọc hoặc lưu danh sách đặt tour. Vui lòng kiểm tra bộ nhớ trình duyệt và thử lại.";
     bookingMessage.textContent = error.message;
     bookingMessage.style.color = "#c44b36";
+}
+
+function requireAccountForBooking() {
+    let username;
+    let isLoggedIn;
+
+    try {
+        username = localStorage.getItem("daNangUsername");
+        isLoggedIn = localStorage.getItem("daNangLoggedIn") === "true";
+    } catch (error) {
+        console.error(error);
+        bookingMessage.textContent =
+            "Không thể kiểm tra tài khoản. Vui lòng bật bộ nhớ trình duyệt rồi thử lại.";
+        bookingMessage.style.color = "#c44b36";
+        return false;
+    }
+
+    if (username && isLoggedIn) {
+        return true;
+    }
+
+    bookingMessage.replaceChildren();
+    bookingMessage.style.color = "#c44b36";
+
+    if (!username) {
+        bookingMessage.append(
+            document.createTextNode("Bạn cần đăng ký tài khoản trước khi đặt tour. ")
+        );
+        const registerLink = document.createElement("a");
+        registerLink.href = "Dangky.html";
+        registerLink.textContent = "Đăng ký ngay";
+        bookingMessage.append(registerLink, document.createTextNode(" hoặc "));
+    } else {
+        bookingMessage.append(
+            document.createTextNode("Bạn đã có tài khoản nhưng chưa đăng nhập. ")
+        );
+    }
+
+    const loginLink = document.createElement("a");
+    loginLink.href = "Dangnhap.html";
+    loginLink.textContent = "Đăng nhập";
+    bookingMessage.append(loginLink, document.createTextNode(" để tiếp tục đặt tour."));
+    return false;
 }
 
 // Báo cho khách khi admin đã duyệt hoặc từ chối đơn (mỗi đơn chỉ báo một lần).
@@ -358,8 +403,33 @@ if (bookingList) {
 }
 
 if (bookingForm) {
+    bookingForm.addEventListener("input", function() {
+        if (bookingSubmissionLocked) {
+            bookingSubmissionLocked = false;
+            if (bookingSubmitButton) {
+                bookingSubmitButton.disabled = false;
+            }
+        }
+    });
+
+    bookingForm.addEventListener("change", function() {
+        if (bookingSubmissionLocked) {
+            bookingSubmissionLocked = false;
+            if (bookingSubmitButton) {
+                bookingSubmitButton.disabled = false;
+            }
+        }
+    });
+
     bookingForm.addEventListener("submit", function(event) {
         event.preventDefault();
+        if (bookingSubmissionLocked) {
+            return;
+        }
+
+        if (!requireAccountForBooking()) {
+            return;
+        }
 
         const selectedOption = tourSelect.options[tourSelect.selectedIndex];
         const booking = {
@@ -383,6 +453,11 @@ if (bookingForm) {
             return;
         }
 
+        bookingSubmissionLocked = true;
+        if (bookingSubmitButton) {
+            bookingSubmitButton.disabled = true;
+        }
+
         try {
             const bookings = readBookings();
             bookings.push(booking);
@@ -394,6 +469,10 @@ if (bookingForm) {
             bookingMessage.textContent = "✓ Gửi yêu cầu đặt tour thành công! Vui lòng chờ Đà Nẵng Travel xem xét và xác nhận đơn.";
             bookingMessage.style.color = "#0d8a7a";
         } catch (error) {
+            bookingSubmissionLocked = false;
+            if (bookingSubmitButton) {
+                bookingSubmitButton.disabled = false;
+            }
             showBookingError(error);
         }
     });

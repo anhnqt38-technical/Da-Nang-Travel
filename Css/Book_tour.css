@@ -31,6 +31,12 @@
 #bookingMessage {
     margin-top: 10px;
     font-weight: bold;
+    line-height: 1.6;
+}
+
+#bookingMessage a {
+    color: #00796b;
+    text-decoration: underline;
 }
 
 .booking-main {
