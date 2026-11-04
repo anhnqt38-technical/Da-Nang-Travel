@@ -1,8 +1,8 @@
 const tourDetails = document.getElementById("tourDetails");
 const priceByTour = {
-    "Đà Nẵng – Bà Nà – Hội An (3 ngày 2 đêm)": 3500000,
-    "Một ngày ở Đà Nẵng": 1200000,
-    "Hẹn hò cùng phố cổ Hội An": 1500000
+    "Đà Nẵng – Bà Nà – Hội An (3 ngày 2 đêm)": { adult: 3500000, child: 1500000 },
+    "Một ngày ở Đà Nẵng": { adult: 1500000, child: 700000 },
+    "Hẹn hò cùng phố cổ Hội An": { adult: 1800000, child: 1000000 }
 };
 
 function showTourNotice(message, includeLoginLink = false) {
@@ -45,15 +45,27 @@ function formatMoney(value) {
     return `${Number(value).toLocaleString("vi-VN")} VNĐ`;
 }
 
-function renderPaymentInfo(card, booking) {
+function getBookingAmounts(booking) {
+    const tourPrice = priceByTour[booking.tour] || {};
+    const adultUnitPrice = Number(booking.adultUnitPrice) ||
+        Number(booking.unitPrice) || tourPrice.adult || 0;
+    const childUnitPrice = Number(booking.childUnitPrice) || tourPrice.child || 0;
+    const adultGuests = booking.adultGuests === undefined
+        ? Number(booking.guests || 1)
+        : Number(booking.adultGuests);
+    const childGuests = Number(booking.childGuests) || 0;
+    const total = adultUnitPrice * adultGuests + childUnitPrice * childGuests;
+    const paid = Math.max(0, Number(booking.paidAmount) || 0);
+    const remaining = Math.max(0, total - paid);
+    return { adultGuests, childGuests, adultUnitPrice, childUnitPrice, total, paid, remaining };
+}
+
+function renderPaymentInfo(card, booking, amounts) {
     if (booking.status !== "Đã xác nhận") {
         return;
     }
 
-    const unitPrice = Number(booking.unitPrice) || priceByTour[booking.tour] || 0;
-    const total = unitPrice * Number(booking.guests || 1);
-    const paid = Math.max(0, Number(booking.paidAmount) || 0);
-    const remaining = Math.max(0, total - paid);
+    const { total, paid, remaining } = amounts;
 
     if (total > 0 && remaining === 0) {
         appendTourLine(card, "Thanh toán", `Đã thanh toán đủ ${formatMoney(total)}`);
@@ -117,13 +129,14 @@ try {
                 card.append(title);
 
                 appendTourLine(card, "Ngày khởi hành", formatDate(booking.departureDate));
-                appendTourLine(card, "Số khách", booking.guests ? `${booking.guests} người` : "");
+                const amounts = getBookingAmounts(booking);
+                appendTourLine(card, "Người lớn", `${amounts.adultGuests} người`);
+                appendTourLine(card, "Trẻ em", `${amounts.childGuests} người`);
                 appendTourLine(card, "Khách hàng", booking.customerName);
                 appendTourLine(card, "Trạng thái", booking.status || "Chờ xác nhận");
 
-                if (Number.isFinite(Number(booking.unitPrice)) && Number(booking.unitPrice) > 0) {
-                    const amount = Number(booking.unitPrice) * (Number(booking.guests) || 1);
-                    appendTourLine(card, "Tổng tiền", `${amount.toLocaleString("vi-VN")} VNĐ`);
+                if (amounts.total > 0) {
+                    appendTourLine(card, "Tổng tiền", formatMoney(amounts.total));
                 }
 
                 if (booking.paymentStatus) {
@@ -132,7 +145,7 @@ try {
                 if (booking.note) {
                     appendTourLine(card, "Yêu cầu thêm", booking.note);
                 }
-                renderPaymentInfo(card, booking);
+                renderPaymentInfo(card, booking, amounts);
 
                 tourDetails.append(card);
             });
