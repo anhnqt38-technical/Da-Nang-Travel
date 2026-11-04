@@ -81,6 +81,7 @@ document.getElementById("registerForm")
         try {
             localStorage.setItem("daNangUsername", fullname);
             localStorage.setItem("daNangPhone", phone);
+            localStorage.setItem("daNangEmail", email);
             localStorage.setItem("daNangPassword", password);
             localStorage.removeItem("daNangLoggedIn");
         } catch (error) {

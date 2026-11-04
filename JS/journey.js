@@ -29,13 +29,29 @@ function toggleRoute(button) {
 
 const form = document.getElementById("reviewForm");
 const reviewList = document.getElementById("reviewList");
+const reviewName = document.getElementById("name");
 
 let reviews = [];
+let loggedInName = "";
 
 try {
     reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
 } catch (error) {
     reviews = [];
+}
+
+try {
+    if (localStorage.getItem("daNangLoggedIn") === "true") {
+        loggedInName = localStorage.getItem("daNangUsername") || "";
+    }
+} catch (error) {
+    console.error("Không thể đọc thông tin tài khoản để điền tên bình luận.", error);
+}
+
+if (reviewName && loggedInName) {
+    reviewName.value = loggedInName;
+    reviewName.readOnly = true;
+    reviewName.setAttribute("aria-label", "Tên tài khoản");
 }
 
 function showReviews() {
@@ -74,7 +90,7 @@ if (form) {
     form.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        const name = document.getElementById("name").value.trim();
+        const name = loggedInName || reviewName.value.trim();
         const rating = Number(document.getElementById("rating").value);
         const comment = document.getElementById("comment").value.trim();
 
@@ -95,6 +111,9 @@ if (form) {
 
         showReviews();
         form.reset();
+        if (loggedInName) {
+            reviewName.value = loggedInName;
+        }
     });
 }
 

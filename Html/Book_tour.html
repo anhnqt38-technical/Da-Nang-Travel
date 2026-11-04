@@ -31,45 +31,50 @@
         <h2>Thông tin đặt tour</h2>
 
         <form id="bookingForm">
-            <div class="form-group">
-                <label>Chọn hành trình *</label>
-                <select id="tour">
+            <div class="form-group" id="tourField">
+                <label for="tour">Chọn hành trình *</label>
+                <select id="tour" required>
                     <option value="">-- Chọn hành trình --</option>
-                    <option value="Đà Nẵng – Bà Nà – Hội An (3 ngày 2 đêm)" data-price="3500000">
+                    <option value="tour-da-nang-ba-na-hoi-an" data-adult-price="3500000" data-child-price="1500000">
                         Đà Nẵng – Bà Nà – Hội An (3 ngày 2 đêm)
                     </option>
-                    <option value="Một ngày ở Đà Nẵng" data-price="1200000">
+                    <option value="tour-mot-ngay-da-nang" data-adult-price="1500000" data-child-price="700000">
                         Một ngày ở Đà Nẵng
                     </option>
-                    <option value="Hẹn hò cùng phố cổ Hội An" data-price="1500000">
+                    <option value="tour-pho-co-hoi-an" data-adult-price="1800000" data-child-price="1000000">
                         Hẹn hò cùng phố cổ Hội An
                     </option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label>Họ và tên *</label>
-                <input type="text" id="customerName" placeholder="Nhập họ và tên">
+                <label for="customerName">Họ và tên</label>
+                <input type="text" id="customerName" readonly>
             </div>
 
             <div class="form-group">
-                <label>Số điện thoại *</label>
-                <input type="text" id="phone" placeholder="Ví dụ: 09xxxxxxxx">
+                <label for="phone">Số điện thoại</label>
+                <input type="tel" id="phone" readonly>
             </div>
 
             <div class="form-group">
-                <label>Email</label>
-                <input type="email" id="email" placeholder="example@email.com">
+                <label for="email">Email</label>
+                <input type="email" id="email" readonly>
             </div>
 
             <div class="form-group">
-                <label>Ngày khởi hành *</label>
-                <input type="date" id="departureDate">
+                <label for="departureDate">Ngày khởi hành *</label>
+                <input type="date" id="departureDate" required>
             </div>
 
             <div class="form-group">
-                <label>Số lượng khách *</label>
-                <input type="number" id="guests" value="1" min="1">
+                <label for="adultGuests">Số người lớn</label>
+                <input type="number" id="adultGuests" value="0" min="0" step="1">
+            </div>
+
+            <div class="form-group">
+                <label for="childGuests">Số trẻ em</label>
+                <input type="number" id="childGuests" value="0" min="0" step="1">
             </div>
 
             <div class="total-price">
@@ -77,28 +82,10 @@
                 <p id="totalPrice">0 VNĐ</p>
             </div>
 
-            <div class="form-group">
-                <label>Yêu cầu thêm</label>
-                <textarea id="note" placeholder="Bạn có yêu cầu đặc biệt nào không?"></textarea>
-            </div>
-
             <button type="submit" class="btn-submit">Gửi yêu cầu đặt tour</button>
             <p id="bookingMessage"></p>
         </form>
 
-        <div id="vung-quan-ly-don" class="management-box" aria-live="polite">
-            <h3>Kiểm tra lại đơn đặt tour</h3>
-            <p>Nhập số điện thoại đã dùng khi đặt tour để xem và quản lý yêu cầu của bạn.</p>
-            <form id="bookingLookupForm" class="booking-lookup-form">
-                <div class="form-group">
-                    <label for="lookupPhone">Số điện thoại đặt tour</label>
-                    <input type="tel" id="lookupPhone" autocomplete="tel" placeholder="Nhập số điện thoại">
-                </div>
-                <button type="submit" class="btn-submit">Kiểm tra đơn hàng</button>
-                <p id="bookingListMessage" class="booking-message" role="status"></p>
-            </form>
-            <div id="bookingList" class="booking-list" hidden></div>
-        </div>
     </main>
 
     <footer>
