@@ -1,6 +1,11 @@
 const BOOKING_KEY = "tourBookings";
 const ADMIN_PASSWORD = "admin123";          // Đổi mật khẩu tại đây
 const ADMIN_SESSION_KEY = "adminLoggedIn";
+const priceByTour = {
+    "Đà Nẵng – Bà Nà – Hội An (3 ngày 2 đêm)": { adult: 3500000, child: 1500000 },
+    "Một ngày ở Đà Nẵng": { adult: 1500000, child: 700000 },
+    "Hẹn hò cùng phố cổ Hội An": { adult: 1800000, child: 1000000 }
+};
 
 const loginBox = document.getElementById("adminLogin");
 const loginForm = document.getElementById("adminLoginForm");
@@ -33,9 +38,24 @@ function formatDate(value) {
 }
 
 function formatMoney(booking) {
-    const unit = Number(booking.unitPrice);
-    if (!unit) return "";
-    return `${(unit * Number(booking.guests || 1)).toLocaleString("vi-VN")} VNĐ`;
+    const tourPrice = priceByTour[booking.tour] || {};
+    const adultUnitPrice = Number(booking.adultUnitPrice) ||
+        Number(booking.unitPrice) || tourPrice.adult || 0;
+    const childUnitPrice = Number(booking.childUnitPrice) || tourPrice.child || 0;
+    const adultGuests = booking.adultGuests === undefined
+        ? Number(booking.guests || 1)
+        : Number(booking.adultGuests);
+    const childGuests = Number(booking.childGuests) || 0;
+    const total = adultUnitPrice * adultGuests + childUnitPrice * childGuests;
+    return total ? `${total.toLocaleString("vi-VN")} VNĐ` : "";
+}
+
+function guestSummary(booking) {
+    const adults = booking.adultGuests === undefined
+        ? Number(booking.guests || 0)
+        : Number(booking.adultGuests) || 0;
+    const children = Number(booking.childGuests) || 0;
+    return `${adults} người lớn, ${children} trẻ em`;
 }
 
 function statusClass(status) {
@@ -123,8 +143,7 @@ function render() {
                 makeLine("Số điện thoại", booking.phone),
                 makeLine("Email", booking.email),
                 makeLine("Ngày khởi hành", formatDate(booking.departureDate)),
-                makeLine("Số khách", String(booking.guests || "")),
-                makeLine("Yêu cầu thêm", booking.note)
+                makeLine("Số khách", guestSummary(booking))
             );
 
             const money = formatMoney(booking);
@@ -196,7 +215,7 @@ listBox.addEventListener("click", (event) => {
                 `Khách hàng: ${booking.customerName}\n` +
                 `Hành trình: ${booking.tour}\n` +
                 `Ngày khởi hành: ${formatDate(booking.departureDate)}\n` +
-                `Số khách: ${booking.guests}`
+                `Số khách: ${guestSummary(booking)}`
             );
         } else if (btn.dataset.action === "reject") {
             const reason = prompt("Nhập lý do từ chối đơn (có thể để trống):");

@@ -13,9 +13,9 @@ const DAYS_BEFORE_TOUR = 3;   // Hạn thanh toán phần còn lại: trước n
 
 // Dự phòng cho đơn cũ chưa lưu đơn giá
 const priceByTour = {
-    "Đà Nẵng – Bà Nà – Hội An (3 ngày 2 đêm)": 3500000,
-    "Một ngày ở Đà Nẵng": 1200000,
-    "Hẹn hò cùng phố cổ Hội An": 1500000
+    "Đà Nẵng – Bà Nà – Hội An (3 ngày 2 đêm)": { adult: 3500000, child: 1500000 },
+    "Một ngày ở Đà Nẵng": { adult: 1500000, child: 700000 },
+    "Hẹn hò cùng phố cổ Hội An": { adult: 1800000, child: 1000000 }
 };
 
 let currentBooking = null;
@@ -60,8 +60,15 @@ function formatDate(date) {
 }
 
 function getPaymentInfo(booking) {
-    const unit = Number(booking.unitPrice) || priceByTour[booking.tour] || 0;
-    const total = unit * Number(booking.guests || 1);
+    const tourPrice = priceByTour[booking.tour] || {};
+    const adultUnitPrice = Number(booking.adultUnitPrice) ||
+        Number(booking.unitPrice) || tourPrice.adult || 0;
+    const childUnitPrice = Number(booking.childUnitPrice) || tourPrice.child || 0;
+    const adultGuests = booking.adultGuests === undefined
+        ? Number(booking.guests || 1)
+        : Number(booking.adultGuests);
+    const childGuests = Number(booking.childGuests) || 0;
+    const total = adultUnitPrice * adultGuests + childUnitPrice * childGuests;
     const paid = Number(booking.paidAmount) || 0;
     const departure = parseLocalDate(booking.departureDate);
     const deadline = departure
@@ -72,6 +79,8 @@ function getPaymentInfo(booking) {
 
     return {
         total,
+        adultGuests,
+        childGuests,
         paid,
         remaining: Math.max(0, total - paid),
         deposit: Math.ceil(total / 2),
@@ -105,7 +114,8 @@ function renderBooking(booking, info) {
         ["Hành trình", booking.tour],
         ["Khách hàng", booking.customerName],
         ["Ngày khởi hành", departure ? formatDate(departure) : booking.departureDate],
-        ["Số khách", `${booking.guests} người`],
+        ["Người lớn", `${info.adultGuests} người`],
+        ["Trẻ em", `${info.childGuests} người`],
         ["Số điện thoại", booking.phone],
         ["Tổng tiền", money(info.total)],
         ["Đã thanh toán", money(info.paid)]
@@ -182,7 +192,7 @@ function selectedAmount(info) {
 function updateSelection() {
     const info = getPaymentInfo(currentBooking);
     const choice = selectedAmount(info);
-    confirmPaymentButton.disabled = !choice || !qrIsReady || info.total <= 0;
+    confirmPaymentButton.disabled = !choice || info.total <= 0;
     qrMessage.textContent = choice
         ? `Số tiền cần chuyển: ${money(choice.amount)}. Mã QR cố định, không đổi theo số tiền.`
         : "Vui lòng chọn hình thức thanh toán.";
@@ -191,7 +201,7 @@ function updateSelection() {
 function createFixedQr() {
     if (qrIsReady) return;
     if (typeof QRCode === "undefined") {
-        qrMessage.textContent = "Không tải được công cụ tạo mã QR. Hãy kiểm tra kết nối rồi tải lại trang.";
+        qrMessage.textContent = "Không tải được mã QR demo. Bạn vẫn có thể xác nhận thanh toán mô phỏng.";
         return;
     }
     try {
@@ -278,7 +288,7 @@ paymentForm.addEventListener("submit", function(event) {
 
         const info = getPaymentInfo(booking);
         const choice = selectedAmount(info);
-        if (!choice || !qrIsReady || info.total <= 0) return;
+        if (!choice || info.total <= 0) return;
         if (choice.type === "deposit" && !info.canDeposit) return;
 
         const nowIso = new Date().toISOString();

@@ -4,12 +4,9 @@ const bookingForm = document.getElementById("bookingForm");
 const bookingMessage = document.getElementById("bookingMessage");
 const bookingSubmitButton = bookingForm?.querySelector('button[type="submit"]');
 const departureDate = document.getElementById("departureDate");
-const guestsInput = document.getElementById("guests");
+const adultGuestsInput = document.getElementById("adultGuests");
+const childGuestsInput = document.getElementById("childGuests");
 const totalPrice = document.getElementById("totalPrice");
-const bookingList = document.getElementById("bookingList");
-const bookingListMessage = document.getElementById("bookingListMessage");
-const bookingLookupForm = document.getElementById("bookingLookupForm");
-const lookupPhone = document.getElementById("lookupPhone");
 const bookingStorageKey = "tourBookings";
 const lastPhoneKey = "lastBookingPhone";
 let searchedPhone = "";
@@ -20,6 +17,21 @@ const selectedTour = params.get("tour");
 
 if (selectedTour && tourSelect) {
     tourSelect.value = selectedTour;
+    if (tourSelect.value === selectedTour) {
+        tourSelect.disabled = true;
+    }
+}
+
+try {
+    document.getElementById("customerName").value =
+        localStorage.getItem("daNangUsername") || "";
+    document.getElementById("phone").value =
+        localStorage.getItem("daNangPhone") || "";
+    document.getElementById("email").value =
+        localStorage.getItem("daNangEmail") || "";
+} catch (error) {
+    bookingMessage.textContent = "Không thể đọc thông tin tài khoản đã đăng ký.";
+    bookingMessage.style.color = "#c44b36";
 }
 
 if (departureDate) {
@@ -30,19 +42,23 @@ if (departureDate) {
 }
 
 function calculatePrice() {
-    if (!tourSelect || !guestsInput || !totalPrice) {
+    if (!tourSelect || !adultGuestsInput || !childGuestsInput || !totalPrice) {
         return;
     }
 
     const selectedOption = tourSelect.options[tourSelect.selectedIndex];
-    const price = Number(selectedOption.dataset.price) || 0;
-    const guests = Math.max(1, Number(guestsInput.value) || 1);
-    totalPrice.textContent = `${(price * guests).toLocaleString("vi-VN")} VNĐ`;
+    const adultPrice = Number(selectedOption.dataset.adultPrice) || 0;
+    const childPrice = Number(selectedOption.dataset.childPrice) || 0;
+    const adults = Math.max(0, Number(adultGuestsInput.value) || 0);
+    const children = Math.max(0, Number(childGuestsInput.value) || 0);
+    const total = adultPrice * adults + childPrice * children;
+    totalPrice.textContent = `${total.toLocaleString("vi-VN")} VNĐ`;
 }
 
-if (tourSelect && guestsInput) {
+if (tourSelect && adultGuestsInput && childGuestsInput) {
     tourSelect.addEventListener("change", calculatePrice);
-    guestsInput.addEventListener("input", calculatePrice);
+    adultGuestsInput.addEventListener("input", calculatePrice);
+    childGuestsInput.addEventListener("input", calculatePrice);
     calculatePrice();
 }
 
@@ -54,6 +70,19 @@ function formatDate(value) {
     if (!value) return "";
     const [y, m, d] = value.split("-");
     return y && m && d ? `${d}/${m}/${y}` : value;
+}
+
+function getGuestCounts(booking) {
+    const adults = booking.adultGuests === undefined
+        ? Number(booking.guests || 0)
+        : Number(booking.adultGuests) || 0;
+    const children = Number(booking.childGuests) || 0;
+    return { adults, children };
+}
+
+function guestSummary(booking) {
+    const guests = getGuestCounts(booking);
+    return `${guests.adults} người lớn, ${guests.children} trẻ em`;
 }
 
 function readBookings() {
@@ -95,8 +124,8 @@ function saveBookings(bookings) {
 }
 
 function showBookingError(error) {
-    bookingListMessage.textContent = "Không thể đọc hoặc lưu danh sách đặt tour. Vui lòng kiểm tra bộ nhớ trình duyệt và thử lại.";
-    bookingMessage.textContent = error.message;
+    bookingMessage.textContent =
+        `Không thể lưu đơn đặt tour. Vui lòng kiểm tra bộ nhớ trình duyệt và thử lại. ${error.message}`;
     bookingMessage.style.color = "#c44b36";
 }
 
@@ -146,17 +175,15 @@ function requireAccountForBooking() {
 // Báo cho khách khi admin đã duyệt hoặc từ chối đơn (mỗi đơn chỉ báo một lần).
 function notifyReviewedBookings() {
     try {
-        const phones = [localStorage.getItem(lastPhoneKey), searchedPhone]
-            .map(normalizePhone)
-            .filter(Boolean);
-        if (phones.length === 0) {
+        const phone = normalizePhone(localStorage.getItem(lastPhoneKey));
+        if (!phone) {
             return;
         }
 
         const bookings = readBookings();
         const toNotify = bookings.filter((booking) =>
             booking.reviewedAt && booking.notified === false &&
-            phones.includes(normalizePhone(booking.phone)) &&
+            phone === normalizePhone(booking.phone) &&
             (booking.status === "Đã xác nhận" || booking.status === "Từ chối")
         );
         if (toNotify.length === 0) {
@@ -174,7 +201,7 @@ function notifyReviewedBookings() {
                     "✓ Đơn đặt tour của bạn đã được xác nhận!\n\n" +
                     `Hành trình: ${booking.tour}\n` +
                     `Ngày khởi hành: ${formatDate(booking.departureDate)}\n` +
-                    `Số khách: ${booking.guests}\n\n` +
+                    `Số khách: ${guestSummary(booking)}\n\n` +
                     "Cảm ơn bạn đã chọn Đà Nẵng Travel."
                 );
             } else {
@@ -187,10 +214,6 @@ function notifyReviewedBookings() {
             }
         });
 
-        if (searchedPhone) {
-            renderBookingList();
-        }
-
         // Sau thông báo xác nhận, chuyển khách sang trang chọn đặt cọc / thanh toán toàn bộ.
         const needPayment = toNotify.find((booking) =>
             booking.status === "Đã xác nhận" && booking.paymentStatus !== "Đã thanh toán đủ");
@@ -200,206 +223,6 @@ function notifyReviewedBookings() {
     } catch (error) {
         console.error(error);
     }
-}
-
-function renderBookingList() {
-    if (!bookingList || !bookingListMessage) {
-        return;
-    }
-
-    try {
-        const bookings = readBookings().filter((booking) =>
-            normalizePhone(booking.phone) === searchedPhone
-        );
-        bookingList.replaceChildren();
-
-        if (bookings.length === 0) {
-            bookingList.hidden = true;
-            bookingListMessage.textContent = "Không tìm thấy đơn đặt tour với số điện thoại này.";
-            return;
-        }
-
-        bookingList.hidden = false;
-        bookingListMessage.textContent = `Tìm thấy ${bookings.length} đơn đặt tour.`;
-        bookings.forEach((booking) => {
-            const isCancelled = booking.status === "Đã hủy";
-            const isRejected = booking.status === "Từ chối";
-            const isPending = booking.status === "Chờ xác nhận";
-            const card = document.createElement("article");
-            card.className = "booking-item";
-
-            const details = document.createElement("div");
-            details.className = "booking-item-details";
-            [
-                ["Hành trình", booking.tour],
-                ["Khách hàng", booking.customerName],
-                ["Ngày khởi hành", formatDate(booking.departureDate)],
-                ["Số điện thoại", booking.phone],
-                ["Số khách", booking.guests]
-            ].forEach(([label, value]) => {
-                const line = document.createElement("p");
-                const strong = document.createElement("strong");
-                strong.textContent = `${label}: `;
-                line.append(strong, document.createTextNode(value || "Chưa có thông tin"));
-                details.append(line);
-            });
-
-            const status = document.createElement("p");
-            status.className = `booking-status${isCancelled || isRejected ? " is-cancelled" : ""}`;
-            status.textContent = `Trạng thái: ${booking.status}`;
-            details.append(status);
-
-            if (isRejected && booking.rejectReason) {
-                const reason = document.createElement("p");
-                reason.textContent = `Lý do từ chối: ${booking.rejectReason}`;
-                details.append(reason);
-            }
-
-            if (booking.status === "Đã xác nhận") {
-                const payment = document.createElement("p");
-                payment.textContent = `Thanh toán: ${booking.paymentStatus || "Chưa thanh toán"}`;
-                details.append(payment);
-                if (booking.paymentStatus === "Đã đặt cọc" && booking.remainingDueDate) {
-                    const due = document.createElement("p");
-                    due.textContent = `Thanh toán phần còn lại trước ngày ${formatDate(booking.remainingDueDate)}`;
-                    details.append(due);
-                }
-            }
-
-            const actions = document.createElement("div");
-            actions.className = "booking-item-actions";
-
-            // Chỉ cho đổi số khách khi đơn còn chờ admin duyệt.
-            if (isPending) {
-                const guestControl = document.createElement("div");
-                guestControl.className = "guest-control";
-
-                const decreaseButton = document.createElement("button");
-                decreaseButton.type = "button";
-                decreaseButton.className = "btn-sua";
-                decreaseButton.dataset.action = "decrease";
-                decreaseButton.dataset.bookingId = booking.id;
-                decreaseButton.textContent = "−";
-                decreaseButton.setAttribute("aria-label", "Giảm một khách");
-                decreaseButton.disabled = Number(booking.guests) <= 1;
-
-                const increaseButton = document.createElement("button");
-                increaseButton.type = "button";
-                increaseButton.className = "btn-sua";
-                increaseButton.dataset.action = "increase";
-                increaseButton.dataset.bookingId = booking.id;
-                increaseButton.textContent = "+";
-                increaseButton.setAttribute("aria-label", "Thêm một khách");
-
-                guestControl.append(
-                    document.createTextNode("Điều chỉnh số khách: "),
-                    decreaseButton,
-                    increaseButton
-                );
-                actions.append(guestControl);
-            }
-
-            const isApproved = booking.status === "Đã xác nhận";
-            if (isApproved && booking.paymentStatus !== "Đã thanh toán đủ") {
-                const payLink = document.createElement("a");
-                payLink.className = "btn-sua";
-                payLink.href = `Thanhtoan.html?booking=${encodeURIComponent(booking.id)}`;
-                payLink.textContent = booking.paymentStatus === "Đã đặt cọc"
-                    ? "Thanh toán phần còn lại"
-                    : "Thanh toán ngay";
-                actions.append(payLink);
-            }
-
-            // Đơn đã thanh toán (cọc hoặc đủ) không cho khách tự hủy.
-            if (isPending || (isApproved && !Number(booking.paidAmount))) {
-                const cancelButton = document.createElement("button");
-                cancelButton.type = "button";
-                cancelButton.className = "btn-huy";
-                cancelButton.dataset.action = "cancel";
-                cancelButton.dataset.bookingId = booking.id;
-                cancelButton.textContent = "Hủy đơn";
-                actions.append(cancelButton);
-            }
-
-            const deleteButton = document.createElement("button");
-            deleteButton.type = "button";
-            deleteButton.className = "btn-huy";
-            deleteButton.dataset.action = "delete";
-            deleteButton.dataset.bookingId = booking.id;
-            deleteButton.textContent = "Xóa yêu cầu";
-            actions.append(deleteButton);
-
-            card.append(details, actions);
-            bookingList.append(card);
-        });
-    } catch (error) {
-        showBookingError(error);
-    }
-}
-
-if (bookingLookupForm) {
-    bookingLookupForm.addEventListener("submit", function(event) {
-        event.preventDefault();
-        searchedPhone = normalizePhone(lookupPhone.value);
-        bookingList.replaceChildren();
-        bookingList.hidden = true;
-
-        if (!searchedPhone) {
-            bookingListMessage.textContent = "Vui lòng nhập số điện thoại đã dùng khi đặt tour.";
-            return;
-        }
-
-        renderBookingList();
-        notifyReviewedBookings();
-    });
-}
-
-if (bookingList) {
-    bookingList.addEventListener("click", function(event) {
-        const button = event.target.closest("button[data-action]");
-        if (!button) {
-            return;
-        }
-
-        const confirmation = button.dataset.action === "delete"
-            ? "Bạn có chắc chắn muốn xóa yêu cầu đặt tour này không? Thao tác này không thể hoàn tác."
-            : "Bạn có chắc chắn muốn hủy đơn đặt tour này không?";
-        if ((button.dataset.action === "cancel" || button.dataset.action === "delete") &&
-            !confirm(confirmation)) {
-            return;
-        }
-
-        try {
-            const bookings = readBookings();
-            const booking = bookings.find((item) => item.id === button.dataset.bookingId);
-            if (!booking) {
-                return;
-            }
-
-            if (button.dataset.action === "cancel") {
-                if (booking.status === "Đã hủy") {
-                    return;
-                }
-                booking.status = "Đã hủy";
-                saveBookings(bookings);
-            } else if (button.dataset.action === "delete") {
-                saveBookings(bookings.filter((item) => item.id !== booking.id));
-            } else {
-                if (booking.status !== "Chờ xác nhận") {
-                    return;
-                }
-                const guests = Number(booking.guests);
-                booking.guests = button.dataset.action === "increase"
-                    ? guests + 1
-                    : Math.max(1, guests - 1);
-                saveBookings(bookings);
-            }
-
-            renderBookingList();
-        } catch (error) {
-            showBookingError(error);
-        }
-    });
 }
 
 if (bookingForm) {
@@ -432,22 +255,28 @@ if (bookingForm) {
         }
 
         const selectedOption = tourSelect.options[tourSelect.selectedIndex];
+        const adults = Number(adultGuestsInput.value);
+        const children = Number(childGuestsInput.value);
         const booking = {
             id: `booking-${Date.now()}-${Math.random().toString(36).slice(2)}`,
             tour: selectedOption.text.trim(),
-            unitPrice: Number(selectedOption.dataset.price) || 0,
+            unitPrice: Number(selectedOption.dataset.adultPrice) || 0,
+            adultUnitPrice: Number(selectedOption.dataset.adultPrice) || 0,
+            childUnitPrice: Number(selectedOption.dataset.childPrice) || 0,
             customerName: document.getElementById("customerName").value.trim(),
             phone: document.getElementById("phone").value.trim(),
             email: document.getElementById("email").value.trim(),
             departureDate: departureDate.value,
-            guests: Number(guestsInput.value),
-            note: document.getElementById("note").value.trim(),
+            adultGuests: adults,
+            childGuests: children,
+            guests: adults + children,
             createdAt: new Date().toISOString(),
             status: "Chờ xác nhận"
         };
 
         if (!tourSelect.value || !booking.customerName || !booking.phone || !booking.departureDate ||
-            !Number.isInteger(booking.guests) || booking.guests < 1) {
+            !Number.isInteger(adults) || adults < 0 ||
+            !Number.isInteger(children) || children < 0 || adults + children < 1) {
             bookingMessage.textContent = "Vui lòng kiểm tra và điền đầy đủ các thông tin bắt buộc.";
             bookingMessage.style.color = "#c44b36";
             return;
@@ -465,6 +294,9 @@ if (bookingForm) {
             localStorage.setItem(lastPhoneKey, booking.phone);
 
             bookingForm.reset();
+            if (selectedTour && tourSelect.value !== selectedTour) {
+                tourSelect.value = selectedTour;
+            }
             calculatePrice();
             bookingMessage.textContent = "✓ Gửi yêu cầu đặt tour thành công! Vui lòng chờ Đà Nẵng Travel xem xét và xác nhận đơn.";
             bookingMessage.style.color = "#0d8a7a";

@@ -82,6 +82,7 @@ document.getElementById("registerForm")
             localStorage.setItem("daNangUsername", fullname);
             localStorage.setItem("daNangEmail", email);
             localStorage.setItem("daNangPhone", phone);
+            localStorage.setItem("daNangEmail", email);
             localStorage.setItem("daNangPassword", password);
             localStorage.removeItem("daNangLoggedIn");
         } catch (error) {
