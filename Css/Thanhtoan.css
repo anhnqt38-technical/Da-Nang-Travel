@@ -266,3 +266,64 @@ body {
         grid-row: 2;
     }
 }
+/* ===== Lựa chọn hình thức thanh toán ===== */
+.option-list {
+    display: grid;
+    gap: 12px;
+    margin: 0 0 18px;
+    padding: 0;
+    border: 0;
+}
+
+.option-list legend {
+    margin-bottom: 10px;
+    padding: 0;
+    font-weight: 700;
+}
+
+.option-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 2px solid #dcebe7;
+    border-radius: 12px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.option-card:hover {
+    border-color: #0d8a7a;
+}
+
+.option-card:has(input:checked) {
+    border-color: #0d8a7a;
+    background: #f1faf8;
+}
+
+.option-card.is-disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.option-card input {
+    margin-top: 4px;
+    accent-color: #0d8a7a;
+}
+
+.option-card strong {
+    display: block;
+}
+
+.option-amount {
+    display: block;
+    margin: 2px 0;
+    color: #e67e00;
+    font-weight: 800;
+}
+
+.option-card small {
+    display: block;
+    color: #60736f;
+    line-height: 1.5;
+}

@@ -193,3 +193,9 @@
         flex-direction: column;
     }
 }
+
+a.btn-sua {
+    display: inline-block;
+    font-size: 13px;
+    text-decoration: none;
+}

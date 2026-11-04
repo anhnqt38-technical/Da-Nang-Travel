@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản trị đơn tour | Đà Nẵng Travel</title>
+    <link rel="stylesheet" href="../Css/style.css">
+    <link rel="stylesheet" href="../Css/Admin.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-logo">
+            <img src="../image/Logo.png" alt="Logo Đà Nẵng Travel" class="logo-img">
+            <span class="logo-text">Đà Nẵng Travel · Quản trị</span>
+        </div>
+        <nav class="header-menu">
+            <a href="index.html" class="menu-item">Về trang chủ</a>
+            <a href="#" class="menu-item" id="adminLogout" hidden>Đăng xuất admin</a>
+        </nav>
+    </header>
+
+    <!-- Màn hình đăng nhập admin -->
+    <main class="admin-login" id="adminLogin">
+        <h2>Đăng nhập quản trị</h2>
+        <form id="adminLoginForm">
+            <div class="form-group">
+                <label for="adminPassword">Mật khẩu</label>
+                <input type="password" id="adminPassword" autocomplete="current-password" placeholder="Nhập mật khẩu admin">
+            </div>
+            <button type="submit" class="btn-submit">Đăng nhập</button>
+            <p id="adminLoginMessage" class="admin-error" role="alert"></p>
+        </form>
+    </main>
+
+    <!-- Khu vực duyệt đơn -->
+    <main class="admin-main" id="adminPanel" hidden>
+        <h2>Duyệt đơn đặt tour</h2>
+
+        <div class="admin-filters" id="adminFilters" role="tablist">
+            <button type="button" class="filter-btn is-active" data-filter="Chờ xác nhận">Chờ xác nhận <span class="count" data-count="Chờ xác nhận">0</span></button>
+            <button type="button" class="filter-btn" data-filter="Đã xác nhận">Đã xác nhận <span class="count" data-count="Đã xác nhận">0</span></button>
+            <button type="button" class="filter-btn" data-filter="Từ chối">Từ chối <span class="count" data-count="Từ chối">0</span></button>
+            <button type="button" class="filter-btn" data-filter="Đã hủy">Khách đã hủy <span class="count" data-count="Đã hủy">0</span></button>
+            <button type="button" class="filter-btn" data-filter="all">Tất cả <span class="count" data-count="all">0</span></button>
+        </div>
+
+        <p id="adminEmpty" class="admin-empty" hidden>Không có đơn nào trong mục này.</p>
+        <div id="adminList" class="admin-list"></div>
+    </main>
+
+    <script src="../JS/Admin.js"></script>
+</body>
+
+</html>
